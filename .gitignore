@@ -2,3 +2,5 @@ local-deploy.sh
 *.hcl
 *tfstate*
 infra/.terraform
+site/resources
+site/public

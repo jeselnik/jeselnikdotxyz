@@ -1,0 +1,17 @@
+{{ define "main" -}}
+<img src="/typing.webp" width="700vw" class="centered"/>
+<center>(on the internet, no one knows you're a stuffed penguin)</center>
+
+<div class="grid-container">
+    <div id="about">
+        <p>Hello! You've reached my personal web page</p>
+    </div>
+
+    <div id="updates">
+        <h3>Recent Updates</h3>
+        {{ range first 3 .Site.RegularPages }}
+            <b>{{.Date.Format "2006-01-02"}}</b> - <a href="{{.RelPermalink}}">{{.Title}}</a><br>
+        {{end}}
+    </div>
+</div>
+{{- end }}

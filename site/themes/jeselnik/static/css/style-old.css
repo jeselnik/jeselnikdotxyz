@@ -1,0 +1,59 @@
+:root {
+    --background: #202020;
+    --title_colour: #206bd1;
+    --text_colour: #979ba1;
+    --link_colour: #335fa9;
+    --link_colour_hover: #4a89f2;
+}
+
+html {
+    font-family: serif;
+    background: var(--background);
+}
+
+h1 {
+    color: var(--title_colour);
+    text-align: center;
+}
+
+h2 {
+    color: var(--title_colour);
+    text-align: center;
+    padding-left: 3vw;
+}
+
+h3 {
+    color: var(--title_colour);
+    text-align: center;
+    padding-left: 3.5vw;
+}
+
+p {
+    padding-left: 10vw;
+    padding-right: 10vw;
+}
+
+a {
+    color: var(--link_colour);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--link_colour_hover)
+}
+
+body {
+    color: var(--text_colour);
+    text-align: center;
+}
+
+nav {
+    text-align: center;
+    font-weight: bold;
+    font-size: large;
+    margin-top: 2.5vh;
+}
+
+img {
+    max-width: 100%;
+}
