@@ -34,3 +34,23 @@ resource "aws_s3_bucket_public_access_block" "jeselnikdotxyz" {
   block_public_acls = false
   block_public_policy = false
 }
+
+data "aws_iam_policy_document" "jeselnikdotxyz" {
+  statement {
+    sid = "PublicReadGetObject"
+    effect = "Allow"
+
+    principals {
+      type = "*"
+      identifiers = [ "*" ]
+    }
+
+    actions = [ "s3:GetObject" ]
+    resources = [ "${aws_s3_bucket.jeselnikdotxyz.arn}/*" ]
+  } 
+}
+
+resource "aws_s3_bucket_policy" "jeselnikdotxyz" {
+  bucket = aws_s3_bucket.jeselnikdotxyz.id
+  policy = data.aws_iam_policy_document.jeselnikdotxyz.json
+}
