@@ -8,17 +8,16 @@ terraform {
 }
 
 provider "aws" {
-    region = "ap-southeast-2"  
+  region = "ap-southeast-2"  
 }
 
 resource "aws_s3_bucket" "jeselnikdotxyz" {
-    bucket = "jeselnikdotxyz" 
-    force_destroy = true
+  bucket = "jeselnikdotxyz" 
+  force_destroy = true
 
-    tags = {
-        Name = "jeselnik.xyz"
-    }
-
+  tags = {
+    Name = "jeselnik.xyz"
+  }
 }
 
 resource "aws_s3_bucket_website_configuration" "jeselnikdotxyz" {
