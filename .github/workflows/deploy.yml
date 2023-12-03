@@ -25,4 +25,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: peaceiris/actions-hugo@v2
-      name: Compile Site
+      - name: Compile Site
+        run: hugo
+        working-directory: ./site
+      - name: Sync
+        run: aws s3 sync . s3://jeselnikdotxyz
+        working-directory: ./site/public
