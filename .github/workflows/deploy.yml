@@ -29,5 +29,5 @@ jobs:
         run: hugo
         working-directory: ./site
       - name: Sync
-        run: aws s3 sync . s3://jeselnikdotxyz --region ap-southeast-2
+        run: aws s3 sync . s3://jeselnikdotxyz --region ap-southeast-2 --size-only
         working-directory: ./site/public
