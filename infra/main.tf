@@ -12,7 +12,7 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "jeselnikdotxyz" {
-  bucket = "jeselnikdotxyz" 
+  bucket = "jeselnik.xyz" 
   force_destroy = true
 
   tags = {
