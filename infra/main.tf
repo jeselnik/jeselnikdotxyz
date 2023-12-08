@@ -5,6 +5,14 @@ terraform {
       version = "5.26.0"
     }
   }
+
+  backend "s3" {
+    bucket = "jeselnik-tf-state"
+    key = "state/terraform.tfstate"
+    region = "ap-southeast-2"
+    dynamodb_table = "jeselnik-tf-lock"
+  }
+
 }
 
 provider "aws" {

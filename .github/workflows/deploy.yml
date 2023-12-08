@@ -11,19 +11,19 @@ env:
   AWS_EC2_METADATA_DISABLED: true
 
 jobs:
-  #terraform:
-  #  name: Deploy Infrastructure
-  #  runs-on: ubuntu-latest
-  #  defaults:
-  #    run:
-  #      working-directory: ./infra
-  #  steps:
-  #    - uses: actions/checkout@v4
-  #    - uses: hashicorp/setup-terraform@v3
-  #    - name: Terraform Init
-  #      run: terraform init
-  #    - name: Terraform Apply
-  #      run: terraform apply -auto-approve
+  terraform:
+    name: Deploy Infrastructure
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./infra
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+      - name: Terraform Init
+        run: terraform init
+      - name: Terraform Apply
+        run: terraform apply -auto-approve
   sync:
     name: Sync
     runs-on: ubuntu-latest
