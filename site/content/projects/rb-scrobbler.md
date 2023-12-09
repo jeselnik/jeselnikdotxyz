@@ -10,7 +10,6 @@ draft: false
 running [rockbox](https://rockbox.org) custom firmware and submits them with accurate timestamps to
 music tracking website [last.fm](https://last.fm).
 
-More information, code and downloads available at [GitHub](https://github.com/jeselnik/rb-scrobbler) and 
-[gitea](https://git.jeselnik.xyz/jeselnik/rb-scrobbler)
+More information, code and downloads available at [GitHub](https://github.com/jeselnik/rb-scrobbler)
 
 Licensed under GPL3
