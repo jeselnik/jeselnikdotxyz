@@ -2,4 +2,6 @@ baseURL = 'https://jeselnik.xyz'
 languageCode = 'en-au'
 title = 'Eddie Jeselnik'
 theme = 'lugo'
+# Cloudfront can't do subdirectories by default so use uglyurls
+# urls to avoid the use of CF functions
 uglyurls = true

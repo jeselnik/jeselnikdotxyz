@@ -37,32 +37,33 @@ resource "aws_s3_bucket" "jeselnikdotxyz" {
   }
 }
 
-resource "aws_s3_bucket_website_configuration" "jeselnikdotxyz" {
-  bucket = aws_s3_bucket.jeselnikdotxyz.id
-
-  index_document {
-    suffix = "index.html"
-  }
-}
-
 resource "aws_s3_bucket_public_access_block" "jeselnikdotxyz" {
   bucket = aws_s3_bucket.jeselnikdotxyz.id
-  block_public_acls = false
-  block_public_policy = false
+  block_public_acls = true
+  block_public_policy = true
+  restrict_public_buckets = true
+  ignore_public_acls = true
 }
 
 data "aws_iam_policy_document" "jeselnikdotxyz" {
   statement {
-    sid = "PublicReadGetObject"
+    sid = "PolicyCloudFrontPrivateContent"
     effect = "Allow"
 
     principals {
-      type = "*"
-      identifiers = [ "*" ]
+      type = "Service"
+      identifiers = [ "cloudfront.amazonaws.com" ]
     }
 
     actions = [ "s3:GetObject" ]
     resources = [ "${aws_s3_bucket.jeselnikdotxyz.arn}/*" ]
+
+    condition {
+      test =  "StringEquals"
+      variable = "AWS:SourceArn"
+      values = [ aws_cloudfront_distribution.jeselnikdotxyz.arn ]
+    }
+
   } 
 }
 
