@@ -2,3 +2,4 @@ baseURL = 'https://jeselnik.xyz'
 languageCode = 'en-au'
 title = 'Eddie Jeselnik'
 theme = 'lugo'
+uglyurls = true
