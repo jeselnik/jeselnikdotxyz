@@ -23,6 +23,11 @@ provider "aws" {
   region = "ap-southeast-2"  
 }
 
+provider "aws" {
+  alias = "us-east-1"
+  region = "us-east-1"
+}
+
 resource "aws_s3_bucket" "jeselnikdotxyz" {
   bucket = "jeselnik.xyz" 
   force_destroy = true
@@ -66,6 +71,12 @@ resource "aws_s3_bucket_policy" "jeselnikdotxyz" {
   policy = data.aws_iam_policy_document.jeselnikdotxyz.json
 }
 
+resource "aws_acm_certificate" "cert" {
+  provider = aws.us-east-1
+  domain_name = "jeselnik.xyz"
+  validation_method = "DNS"
+}
+
 resource "aws_cloudfront_origin_access_control" "jeselnikdotxyz" {
   name = "jeselnik.xyz"
   origin_access_control_origin_type = "s3"
@@ -77,6 +88,7 @@ resource "aws_cloudfront_distribution" "jeselnikdotxyz" {
   enabled = true
   is_ipv6_enabled = true
   default_root_object = "index.html"
+  aliases = [ "jeselnik.xyz" ]
 
   origin {
     domain_name = aws_s3_bucket.jeselnikdotxyz.bucket_regional_domain_name
@@ -88,14 +100,15 @@ resource "aws_cloudfront_distribution" "jeselnikdotxyz" {
     allowed_methods = [ "HEAD", "GET" ]
     cached_methods = [ "HEAD", "GET" ]
     target_origin_id = local.origin_id
-    viewer_protocol_policy = "redirect-to-https"
+    viewer_protocol_policy = "https-only"
     # CachingOptimized
     # https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html
     cache_policy_id = "658327ea-f89d-4fab-a63d-7e88639e58f6"
   }
 
   viewer_certificate {
-    cloudfront_default_certificate = true 
+    acm_certificate_arn = aws_acm_certificate.cert.arn
+    ssl_support_method = "sni-only"
   }
 
   restrictions {
