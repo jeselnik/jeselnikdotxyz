@@ -4,7 +4,7 @@ date: 2022-06-19
 draft: false
 ---
 
-![](/rb-scrobbler/rb-scrobbler.jpg)
+![](rb-scrobbler.jpg)
 
 *rb-scrobbler* is a program I wrote in Go which takes in a log of songs listened to on an MP3 player
 running [rockbox](https://rockbox.org) custom firmware and submits them with accurate timestamps to

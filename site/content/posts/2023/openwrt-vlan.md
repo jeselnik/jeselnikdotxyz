@@ -21,19 +21,19 @@ In this tutorial I will be making use of a few terms:
 802.1q VLAN with the base device being your LAN interface. 
 3. Choose your desired VLAN ID and save the device.
 
-![](/vlan/01-device.png)
+![](openwrt-vlan/01-device.webp)
 
 4. Go back to Interfaces and click "Add new interface". 
 Set protocol as "static address" and set its device as the VLAN you created in a previous step. 
 * You are now free to set your desired IPv4 address (ideally with a number corresponding to the created VLAN
 i.e VLAN 10 - 192.168.10.1/24 ).
 
-![](/vlan/02-interface.png)
+![](openwrt-vlan/02-interface.webp)
 
 I also recommend going to the "Advanced Settings" tab and setting the IPv6 assignment hint to your desired value
 (and make sure you're assigning a /64 prefix to the interface). 
 
-![](/vlan/03-v6-interface.png)
+![](openwrt-vlan/03-v6-interface.webp)
 
 5. Save the interface
 
@@ -49,7 +49,7 @@ as multiple VLANs will be carried on this port it is tagged.
 * The other ports are just connected to devices which I want to belong to the VLAN, thus they are untagged. 
 My uplink port is not pictured but it is also a tagged port. 
 
-![](/vlan/05-es-vlan10.png)
+![](openwrt-vlan/05-es-vlan10.webp)
 
 3. For whatever reason, the firmware on TP-Link Easy Smart switches allow you to set a single port as 
 untagged for multiple VLANs. For best practices* you must ensure that a port is untagged for a single VLAN only. 
@@ -60,7 +60,7 @@ Enter the undesired VLAN ID and set the port as "Not Member".
 For my tagged ports, 1's PVID is 1 as I want the management interface of the AP (which I haven't assigned to a VLAN) to be on 1**.
 My uplink's PVID is also 1 as it is the native VLAN. 
 
-![](/vlan/06-es-pvid.png)
+![](openwrt-vlan/06-es-pvid.webp)
 
 ## Addendum: WAN Interface Tagging
 
