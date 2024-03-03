@@ -1,15 +1,15 @@
 terraform {
   required_providers {
     aws = {
-      source = "hashicorp/aws"
+      source  = "hashicorp/aws"
       version = "5.26.0"
     }
   }
 
   backend "s3" {
-    bucket = "jeselnik-tf-state"
-    key = "state/terraform.tfstate"
-    region = "ap-southeast-2"
+    bucket         = "jeselnik-tf-state"
+    key            = "state/terraform.tfstate"
+    region         = "ap-southeast-2"
     dynamodb_table = "jeselnik-tf-lock"
   }
 
@@ -20,16 +20,16 @@ locals {
 }
 
 provider "aws" {
-  region = "ap-southeast-2"  
+  region = "ap-southeast-2"
 }
 
 provider "aws" {
-  alias = "us-east-1"
+  alias  = "us-east-1"
   region = "us-east-1"
 }
 
 resource "aws_s3_bucket" "jeselnikdotxyz" {
-  bucket = "jeselnik.xyz" 
+  bucket        = "jeselnik.xyz"
   force_destroy = true
 
   tags = {
@@ -38,33 +38,33 @@ resource "aws_s3_bucket" "jeselnikdotxyz" {
 }
 
 resource "aws_s3_bucket_public_access_block" "jeselnikdotxyz" {
-  bucket = aws_s3_bucket.jeselnikdotxyz.id
-  block_public_acls = true
-  block_public_policy = true
+  bucket                  = aws_s3_bucket.jeselnikdotxyz.id
+  block_public_acls       = true
+  block_public_policy     = true
   restrict_public_buckets = true
-  ignore_public_acls = true
+  ignore_public_acls      = true
 }
 
 data "aws_iam_policy_document" "jeselnikdotxyz" {
   statement {
-    sid = "PolicyCloudFrontPrivateContent"
+    sid    = "PolicyCloudFrontPrivateContent"
     effect = "Allow"
 
     principals {
-      type = "Service"
-      identifiers = [ "cloudfront.amazonaws.com" ]
+      type        = "Service"
+      identifiers = ["cloudfront.amazonaws.com"]
     }
 
-    actions = [ "s3:GetObject" ]
-    resources = [ "${aws_s3_bucket.jeselnikdotxyz.arn}/*" ]
+    actions   = ["s3:GetObject"]
+    resources = ["${aws_s3_bucket.jeselnikdotxyz.arn}/*"]
 
     condition {
-      test =  "StringEquals"
+      test     = "StringEquals"
       variable = "AWS:SourceArn"
-      values = [ aws_cloudfront_distribution.jeselnikdotxyz.arn ]
+      values   = [aws_cloudfront_distribution.jeselnikdotxyz.arn]
     }
 
-  } 
+  }
 }
 
 resource "aws_s3_bucket_policy" "jeselnikdotxyz" {
@@ -73,34 +73,38 @@ resource "aws_s3_bucket_policy" "jeselnikdotxyz" {
 }
 
 resource "aws_acm_certificate" "cert" {
-  provider = aws.us-east-1
-  domain_name = "jeselnik.xyz"
-  validation_method = "DNS"
+  provider                  = aws.us-east-1
+  domain_name               = "jeselnik.xyz"
+  subject_alternative_names = ["*.jeselnik.xyz"]
+  validation_method         = "DNS"
 }
 
 resource "aws_cloudfront_origin_access_control" "jeselnikdotxyz" {
-  name = "jeselnik.xyz"
+  name                              = "jeselnik.xyz"
   origin_access_control_origin_type = "s3"
-  signing_behavior = "always"
-  signing_protocol = "sigv4"
+  signing_behavior                  = "always"
+  signing_protocol                  = "sigv4"
 }
 
 resource "aws_cloudfront_distribution" "jeselnikdotxyz" {
-  enabled = true
-  is_ipv6_enabled = true
+  enabled             = true
+  is_ipv6_enabled     = true
   default_root_object = "index.html"
-  aliases = [ "jeselnik.xyz" ]
+  aliases = [
+    "jeselnik.xyz",
+    "www.jeselnik.xyz"
+  ]
 
   origin {
-    domain_name = aws_s3_bucket.jeselnikdotxyz.bucket_regional_domain_name
-    origin_id = local.origin_id
+    domain_name              = aws_s3_bucket.jeselnikdotxyz.bucket_regional_domain_name
+    origin_id                = local.origin_id
     origin_access_control_id = aws_cloudfront_origin_access_control.jeselnikdotxyz.id
   }
 
   default_cache_behavior {
-    allowed_methods = [ "HEAD", "GET" ]
-    cached_methods = [ "HEAD", "GET" ]
-    target_origin_id = local.origin_id
+    allowed_methods        = ["HEAD", "GET"]
+    cached_methods         = ["HEAD", "GET"]
+    target_origin_id       = local.origin_id
     viewer_protocol_policy = "https-only"
     # CachingOptimized
     # https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html
@@ -109,7 +113,7 @@ resource "aws_cloudfront_distribution" "jeselnikdotxyz" {
 
   viewer_certificate {
     acm_certificate_arn = aws_acm_certificate.cert.arn
-    ssl_support_method = "sni-only"
+    ssl_support_method  = "sni-only"
   }
 
   restrictions {
@@ -117,5 +121,5 @@ resource "aws_cloudfront_distribution" "jeselnikdotxyz" {
       restriction_type = "none"
     }
   }
-  
+
 }
