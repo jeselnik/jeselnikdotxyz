@@ -105,7 +105,7 @@ resource "aws_cloudfront_distribution" "jeselnikdotxyz" {
     allowed_methods        = ["HEAD", "GET"]
     cached_methods         = ["HEAD", "GET"]
     target_origin_id       = local.origin_id
-    viewer_protocol_policy = "https-only"
+    viewer_protocol_policy = "redirect-to-https"
     # CachingOptimized
     # https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html
     cache_policy_id = "658327ea-f89d-4fab-a63d-7e88639e58f6"
