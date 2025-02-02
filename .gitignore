@@ -4,3 +4,4 @@ local-deploy.sh
 infra/.terraform
 site/resources
 site/public
+eddie-jeselnik-xyz/public
