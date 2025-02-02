@@ -19,11 +19,11 @@ jobs:
         working-directory: ./infra
     steps:
       - uses: actions/checkout@v4
-      - uses: hashicorp/setup-terraform@v3
-      - name: Terraform Init
-        run: terraform init
-      - name: Terraform Apply
-        run: terraform apply -auto-approve
+      - uses: opentofu/setup-opentofu@v1
+      - name: Tofu Init
+        run: tofu init
+      - name: Tofu Apply
+        run: tofu apply -auto-approve -no-color
   sync:
     name: Sync
     needs: terraform
