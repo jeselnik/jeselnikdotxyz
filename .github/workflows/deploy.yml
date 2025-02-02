@@ -9,6 +9,8 @@ env:
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   # see https://github.com/aws/aws-cli/issues/5623
   AWS_EC2_METADATA_DISABLED: true
+  PORKBUN_API_KEY: ${{ secrets.PORKBUN_API_KEY }}
+  PORKBUN_SECRET_API_KEY: ${{ secrets.PORKBUN_SECRET_API_KEY }}
 
 jobs:
   terraform:
