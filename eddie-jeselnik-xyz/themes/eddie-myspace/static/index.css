@@ -1,0 +1,46 @@
+#profileIndex {
+  grid-template-columns: 400px 742px;
+}
+
+#profileBox {
+  grid-column: 1;
+  grid-row: 1/4;
+}
+
+#profileBox #pfp {
+  height: 200px;
+  width: auto;
+  aspect-ratio: 1;
+  float: left;
+  padding: 0px 10px 0px 0px;
+}
+
+#profileBox #displayName {
+  font-weight: bold;
+  font-size: large;
+}
+
+#interests {
+  grid-row: 5;
+  grid-column: 1;
+  background-color: transparent;
+  border-color: transparent;
+}
+
+#musicBox {
+  grid-column: 1;
+  grid-row: 4/5;
+  background-color: transparent;
+  border-color: transparent;
+}
+
+#blogEntries { 
+  grid-column: 2;
+  grid-row: 1/3;
+}
+
+#blurbs {
+  grid-row: 3/5;
+  grid-column: 2;
+}
+

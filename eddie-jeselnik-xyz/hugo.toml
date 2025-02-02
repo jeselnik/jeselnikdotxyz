@@ -1,0 +1,6 @@
+baseURL = 'https://eddie.jeselnik.xyz/'
+languageCode = 'en-au'
+title = "Eddie's (My)Space"
+theme = 'eddie-myspace'
+[params]
+friendlyBaseURL = "eddie.jeselnik.xyz"
