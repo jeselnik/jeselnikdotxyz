@@ -47,4 +47,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CF_PAGES_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy eddie-jeselnik-xyz/public --project-name=eddie-jeselnik-xyz
+          command: pages deploy eddie-jeselnik-xyz/public --project-name=eddie-jeselnik-xyz --commit-dirty=true
