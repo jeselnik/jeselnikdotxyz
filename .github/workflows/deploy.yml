@@ -33,12 +33,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: peaceiris/actions-hugo@v3
-      - name: Compile Site
-        run: hugo
-        working-directory: ./site
-      - name: Sync
-        run: aws s3 sync . s3://jeselnik.xyz --size-only --delete
-        working-directory: ./site/public
+      #- name: Compile Site
+      #  run: hugo
+      #  working-directory: ./site
+      #- name: Sync
+      #  run: aws s3 sync . s3://jeselnik.xyz --size-only --delete
+      #  working-directory: ./site/public
       - name: Compile Site (eddie.jeselnik.xyz)
         run: hugo
         working-directory: ./eddie-jeselnik-xyz
+      - name: Sync eddie.jeselnik.xyz to CloudFlare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CF_PAGES_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy eddie-jeselnik-xyz/public --project-name=eddie-jeselnik-xyz
