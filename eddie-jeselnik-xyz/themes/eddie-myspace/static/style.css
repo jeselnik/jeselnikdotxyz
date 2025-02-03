@@ -7,7 +7,7 @@
 
 body {
   margin: 0;
-  background-color: var(--bodyBg);
+  background-image: url("stars.gif");
 }
 
 header {
@@ -25,6 +25,10 @@ header a {
   text-decoration: none;
   color: inherit;
   background: none;
+}
+
+table {
+  background-color: var(--profileElemBg);
 }
 
 th, td {
@@ -56,9 +60,9 @@ th {
 }
 
 #rootLink::after {
-  content: attr(normalText);
+  content: "eddie.jeselnik.xyz";
 }
 
 #rootLink:hover::after {
-  content: attr(hoverText);
+  content: "MySpace.com";
 }
