@@ -5,6 +5,11 @@ terraform {
       version = "5.26.0"
     }
 
+    cloudflare = {
+      source  = "cloudflare/cloudflare"
+      version = "~> 5"
+    }
+
     porkbun = {
       source  = "kyswtn/porkbun"
       version = "0.1.3"
@@ -22,6 +27,7 @@ terraform {
 
 locals {
   origin_id = "jeselnik-s3-origin"
+  domain    = "jeselnik.xyz"
 }
 
 provider "aws" {
