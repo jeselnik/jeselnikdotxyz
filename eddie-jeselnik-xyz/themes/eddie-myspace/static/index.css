@@ -1,3 +1,18 @@
+#profileBox #displayName {
+  font-weight: bold;
+  font-size: large;
+}
+
+#musicBox {
+  background-color: transparent;
+  border-color: transparent;
+}
+
+#interests {
+  background-color: transparent;
+  border-color: transparent;
+}
+
 @media only screen and (min-width: 768px) {
   #profileIndex {
     grid-template-columns: 400px 742px;
@@ -16,23 +31,14 @@
     padding: 0px 10px 0px 0px;
   }
 
-  #profileBox #displayName {
-    font-weight: bold;
-    font-size: large;
-  }
-
   #interests {
     grid-row: 5;
     grid-column: 1;
-    background-color: transparent;
-    border-color: transparent;
   }
 
   #musicBox {
     grid-column: 1;
     grid-row: 4/5;
-    background-color: transparent;
-    border-color: transparent;
   }
 
   #blogEntries { 
