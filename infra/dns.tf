@@ -3,11 +3,11 @@ locals {
 }
 
 data "cloudflare_zone" "jeselnik" {
-  zone_id = local.cloudflare_zone_id 
+  zone_id = local.cloudflare_zone_id
 }
 
 resource "porkbun_nameservers" "jeselnik_xyz_nameservers" {
-  domain = local.domain
+  domain      = local.domain
   nameservers = data.cloudflare_zone.jeselnik.name_servers
 }
 
@@ -17,7 +17,7 @@ resource "cloudflare_dns_record" "apex" {
   type    = "CNAME"
   name    = "jeselnik.xyz"
   content = "d1j60fm9ce00ec.cloudfront.net"
-  ttl = 1
+  ttl     = 1
   proxied = false
 }
 
@@ -26,7 +26,7 @@ resource "cloudflare_dns_record" "www" {
   type    = "CNAME"
   name    = "www"
   content = "d1j60fm9ce00ec.cloudfront.net"
-  ttl = 1
+  ttl     = 1
   proxied = false
 }
 
@@ -35,39 +35,39 @@ resource "cloudflare_dns_record" "eddie" {
   type    = "CNAME"
   name    = "eddie"
   content = "eddie-jeselnik-xyz.pages.dev"
-  ttl = 1
+  ttl     = 1
   proxied = true
 }
 
 # mail
 resource "cloudflare_dns_record" "mx_one" {
-  zone_id = local.cloudflare_zone_id
-  type = "MX"
-  name = "jeselnik.xyz"
-  content = "mxext1.mailbox.org"
+  zone_id  = local.cloudflare_zone_id
+  type     = "MX"
+  name     = "@"
+  content  = "mxext1.mailbox.org"
   priority = 10
-  ttl = 1
-  proxied = false
+  ttl      = 1
+  proxied  = false
 }
 
 resource "cloudflare_dns_record" "mx_two" {
-  zone_id = local.cloudflare_zone_id
-  type = "MX"
-  name = "jeselnik.xyz"
-  content = "mxext2.mailbox.org"
+  zone_id  = local.cloudflare_zone_id
+  type     = "MX"
+  name     = "@"
+  content  = "mxext2.mailbox.org"
   priority = 10
-  ttl = 1
-  proxied = false
+  ttl      = 1
+  proxied  = false
 }
 
 resource "cloudflare_dns_record" "mx_three" {
-  zone_id = local.cloudflare_zone_id
-  type = "MX"
-  name = "jeselnik.xyz"
-  content = "mxext3.mailbox.org"
+  zone_id  = local.cloudflare_zone_id
+  type     = "MX"
+  name     = "@"
+  content  = "mxext3.mailbox.org"
   priority = 20
-  ttl = 1
-  proxied = false
+  ttl      = 1
+  proxied  = false
 }
 
 # verifications
@@ -76,7 +76,7 @@ resource "cloudflare_dns_record" "aws_acm" {
   type    = "CNAME"
   name    = "_37df262c98dfb860e5335302990dc63e"
   content = "_08f9984ac88f193cc5c37febd9bbfaa2.mhbtsbpdnt.acm-validations.aws"
-  ttl = 1
+  ttl     = 1
   proxied = false
 }
 
