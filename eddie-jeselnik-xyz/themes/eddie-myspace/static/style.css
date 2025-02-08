@@ -47,23 +47,11 @@ th {
   text-align: left;
 }
 
-/*
-.main {
-  margin: 0px 375px 0px 375px;
-}
-*/
-
 .gridContainer {
   display: grid;
   row-gap: 10px;
   column-gap: 20px;
 }
-
-/*
-.gridContainer div {
-  padding: 10px 10px 10px 10px;
-}
-  */
 
 .profileElement {
   background-color: var(--profileElemBg);
@@ -77,4 +65,18 @@ th {
 
 #rootLink:hover::after {
   content: "MySpace.com";
+}
+
+@media only screen and (min-width: 768px) {
+  .main {
+    padding: 0px 375px 0px 375px;
+  }
+
+  .gridContainer div {
+    padding: 10px 10px 10px 10px;
+  }
+
+  header a {
+    padding-left: 375px;
+  }
 }
