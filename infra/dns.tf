@@ -70,11 +70,6 @@ resource "cloudflare_dns_record" "mx_three" {
   proxied  = false
 }
 
-import {
-  to = cloudflare_dns_record.mailbox_verification
-  id = "${local.cloudflare_zone_id}/3e6edea8a6471c933171d1dd1c2ce621"
-}
-
 resource "cloudflare_dns_record" "mailbox_verification" {
   zone_id = local.cloudflare_zone_id
   type    = "TXT"
@@ -83,11 +78,6 @@ resource "cloudflare_dns_record" "mailbox_verification" {
   comment = "mailbox.org verification"
   ttl     = 1
   proxied = false
-}
-
-import {
-  to = cloudflare_dns_record.dmarc
-  id = "${local.cloudflare_zone_id}/533207a0835ca2d7dbaec2d7291e751e"
 }
 
 resource "cloudflare_dns_record" "dmarc" {
@@ -99,11 +89,6 @@ resource "cloudflare_dns_record" "dmarc" {
   proxied = false
 }
 
-import {
-  to = cloudflare_dns_record.spf
-  id = "${local.cloudflare_zone_id}/f2f8205d136322e6a1b7fdbaa2da63c9"
-}
-
 resource "cloudflare_dns_record" "spf" {
   zone_id = local.cloudflare_zone_id
   type    = "TXT"
@@ -113,11 +98,6 @@ resource "cloudflare_dns_record" "spf" {
   proxied = false
 }
 
-import {
-  to = cloudflare_dns_record.dkim_one
-  id = "${local.cloudflare_zone_id}/3ac78eccbca82ee5574dbfe6d7fcbcf6"
-}
-
 resource "cloudflare_dns_record" "dkim_one" {
   zone_id = local.cloudflare_zone_id
   type    = "TXT"
@@ -125,11 +105,6 @@ resource "cloudflare_dns_record" "dkim_one" {
   content = "\"v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA2K4PavXoNY8eGK2u61LIQlOHS8f5sWsCK5b+HMOfo0M+aNHwfqlVdzi/IwmYnuDKuXYuCllrgnxZ4fG4yVaux58v9grVsFHdzdjPlAQfp5rkiETYpCMZwgsmdseJ4CoZaosPHLjPumFE/Ua2WAQQljnunsM9TONM9L6KxrO9t5IISD1XtJb0bq1lVI/e72k3m\" \"nPd/q77qzhTDmwN4TSNJZN8sxzUJx9HNSMRRoEIHSDLTIJUK+Up8IeCx0B7CiOzG5w/cHyZ3AM5V8lkqBaTDK46AwTkTVGJf59QxUZArG3FEH5vy9HzDmy0tGG+053/x4RqkhqMg5/ClDm+lpZqWwIDAQAB\""
   ttl     = 1
   proxied = false
-}
-
-import {
-  to = cloudflare_dns_record.dkim_two
-  id = "${local.cloudflare_zone_id}/037c3e2252b17e6c57967c5a771cdcf9"
 }
 
 resource "cloudflare_dns_record" "dkim_two" {
