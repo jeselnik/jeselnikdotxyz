@@ -35,6 +35,7 @@ header a {
   text-decoration: none;
   color: inherit;
   background: none;
+  padding-left: 50px;
 }
 
 table {
@@ -47,6 +48,10 @@ th, td {
 
 th {
   text-align: left;
+}
+
+.main {
+  padding: 0px 50px 0px 50px;
 }
 
 .gridContainer {
