@@ -98,14 +98,3 @@ resource "cloudflare_dns_record" "dkim_two" {
   ttl     = 1
   proxied = false
 }
-
-# verifications
-resource "cloudflare_dns_record" "aws_acm" {
-  zone_id = local.cloudflare_zone_id
-  type    = "CNAME"
-  name    = "_37df262c98dfb860e5335302990dc63e"
-  content = "_08f9984ac88f193cc5c37febd9bbfaa2.mhbtsbpdnt.acm-validations.aws"
-  ttl     = 1
-  proxied = false
-}
-
