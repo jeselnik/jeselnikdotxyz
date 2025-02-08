@@ -1,6 +1,5 @@
 locals {
-  cloudflare_zone_id = "8fbf559fa97a8369c33564ddc4bdddf4"
-  sub_domains        = toset(["@", "www", "eddie"])
+  sub_domains = toset(["@", "www", "eddie"])
 }
 
 data "cloudflare_zone" "jeselnik" {
