@@ -55,6 +55,10 @@ th {
   column-gap: 20px;
 }
 
+.gridContainer div {
+  padding: 10px 10px 10px 10px;
+}
+
 .profileElement {
   background-color: var(--profileElemBg);
   color: var(--textColor);
@@ -72,10 +76,6 @@ th {
 @media only screen and (min-width: 992px) {
   .main {
     padding: 0px 375px 0px 375px;
-  }
-
-  .gridContainer div {
-    padding: 10px 10px 10px 10px;
   }
 
   header a {
