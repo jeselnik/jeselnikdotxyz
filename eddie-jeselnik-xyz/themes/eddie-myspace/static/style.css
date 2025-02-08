@@ -69,7 +69,7 @@ th {
   content: "MySpace.com";
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 992px) {
   .main {
     padding: 0px 375px 0px 375px;
   }
