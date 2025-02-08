@@ -5,18 +5,26 @@
   --textColor: grey;
 }
 
+* {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100vw;
+}
+
 body {
   margin: 0;
+  padding: 0;
   background-image: url("stars.gif");
 }
 
 header {
   display: flex;
-  padding-left: 375px;
   background-color: var(--myspaceBlue);
   color: white;
   height: 6vh;
-  display: flex;
+  width: 100%;
   align-items: center;
   margin: 0px 0px 20px 0px;
 }
@@ -39,9 +47,11 @@ th {
   text-align: left;
 }
 
+/*
 .main {
   margin: 0px 375px 0px 375px;
 }
+*/
 
 .gridContainer {
   display: grid;
@@ -49,9 +59,11 @@ th {
   column-gap: 20px;
 }
 
+/*
 .gridContainer div {
   padding: 10px 10px 10px 10px;
 }
+  */
 
 .profileElement {
   background-color: var(--profileElemBg);
