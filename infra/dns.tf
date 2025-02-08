@@ -1,5 +1,6 @@
 locals {
   cloudflare_zone_id = "8fbf559fa97a8369c33564ddc4bdddf4"
+  sub_domains        = toset(["@", "www", "eddie"])
 }
 
 data "cloudflare_zone" "jeselnik" {
@@ -12,31 +13,14 @@ resource "porkbun_nameservers" "jeselnik_xyz_nameservers" {
 }
 
 # web
-resource "cloudflare_dns_record" "apex" {
-  zone_id = local.cloudflare_zone_id
-  type    = "CNAME"
-  name    = "jeselnik.xyz"
-  content = "d1j60fm9ce00ec.cloudfront.net"
-  ttl     = 1
-  proxied = false
-}
-
-resource "cloudflare_dns_record" "www" {
-  zone_id = local.cloudflare_zone_id
-  type    = "CNAME"
-  name    = "www"
-  content = "d1j60fm9ce00ec.cloudfront.net"
-  ttl     = 1
-  proxied = false
-}
-
-resource "cloudflare_dns_record" "eddie" {
-  zone_id = local.cloudflare_zone_id
-  type    = "CNAME"
-  name    = "eddie"
-  content = "eddie-jeselnik-xyz.pages.dev"
-  ttl     = 1
-  proxied = true
+resource "cloudflare_dns_record" "sub_domains" {
+  for_each = local.sub_domains
+  zone_id  = local.cloudflare_zone_id
+  type     = "CNAME"
+  name     = each.value
+  content  = "eddie-jeselnik-xyz.pages.dev"
+  ttl      = 1
+  proxied  = false
 }
 
 # mail
