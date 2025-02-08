@@ -19,7 +19,7 @@ resource "cloudflare_dns_record" "sub_domains" {
   name     = each.value
   content  = "eddie-jeselnik-xyz.pages.dev"
   ttl      = 1
-  proxied  = false
+  proxied  = true
 }
 
 # mail
