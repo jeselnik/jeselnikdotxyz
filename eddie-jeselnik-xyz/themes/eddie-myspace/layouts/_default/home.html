@@ -19,6 +19,10 @@
 
     <div id="blogEntries" class="profileElement">
       Eddie's latest blog entries:
+      <br>
+      {{ range where .Site.RegularPages "Type" "posts" }}
+        <a href="{{ .RelPermalink }}">{{ .Date.Format "2006-01-02" }} - {{ .Title }}</a>
+      {{ end }}
     </div>
 
     <div id="blurbs" class="profileElement">

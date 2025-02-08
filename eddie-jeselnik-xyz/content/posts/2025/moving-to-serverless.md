@@ -1,7 +1,8 @@
 ---
-title: "Moving my Web Presence Serverless"
+title: "Making my Web Presence Serverless"
 date: 2025-02-08
 draft: true
+type: posts
 ---
 
 # Why Serverless?
