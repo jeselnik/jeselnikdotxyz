@@ -51,7 +51,7 @@ th {
 }
 
 .main {
-  padding: 0px 50px 0px 50px;
+  padding: 0px 20px 20px 20px;
 }
 
 .gridContainer {
@@ -80,10 +80,20 @@ th {
 
 @media only screen and (min-width: 992px) {
   .main {
+    padding: 0px 20px 0px 20px;
+  }
+
+  header a {
+    padding-left: 20px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .main {
     padding: 0px 375px 0px 375px;
   }
 
   header a {
     padding-left: 375px;
   }
-}
+} 
