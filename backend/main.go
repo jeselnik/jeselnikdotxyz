@@ -25,7 +25,7 @@ func handler(ctx context.Context, req events.APIGatewayV2HTTPRequest) (events.AP
 		return events.APIGatewayV2HTTPResponse{StatusCode: 500}, err
 	}
 
-	resp := events.APIGatewayProxyResponse{
+	resp := events.APIGatewayV2HTTPResponse{
 		StatusCode: 200,
 		Headers:    map[string]string{"Content Type:": "application/json"},
 		Body:       string(resJson),
