@@ -62,4 +62,4 @@ jobs:
       - name: Package Build
         run: zip backend.zip bootstrap
       - name: Upload Build to S3
-        run: aws s3 sync ./backend.zip s3://jeselnik-xyz-lambda
+        run: aws s3 cp backend.zip s3://jeselnik-xyz-lambda/
