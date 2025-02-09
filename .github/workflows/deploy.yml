@@ -47,19 +47,21 @@ jobs:
     name: Build & Deploy Backend
     needs: terraform
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./backend
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-go@v5
       - name: Build Lambda Function
-        working-directory: ./backend
         run: go build -o bootstrap main.go
         env:
           CGO_ENABLED: 0
           GOOS: linux
           GOARCH: amd64
       - name: Package Build
-        working-directory: ./backend
         run: zip backend.zip bootstrap
+      - name: ls
+        run: ls
       - name: Upload Build to S3
-        working-directory: ./backend
         run: aws s3 sync backend.zip s3://jeselnik-xyz-lambda
