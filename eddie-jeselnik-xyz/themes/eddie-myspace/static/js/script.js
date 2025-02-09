@@ -55,9 +55,19 @@ function randomSpotifyTrack(songsArr) {
   return buildSpotifyUrl(songsArr[trackIndex]);
 }
 
+async function visitorCounter() {
+  response = await fetch("https://dg3oo7ffiqitokznjzarauyq440cwnyc.lambda-url.ap-southeast-2.on.aws");
+  const data = await response.json();
+  return data.totalVisitors;
+}
+
 document.addEventListener("DOMContentLoaded", function() {
   document.getElementById("agePar").innerHTML = whatsMyAgeAgain(profile.birthday) + " years old";
   document.getElementById("location").innerHTML = profile.location;
   document.getElementById("spotifyEmbed").src = randomSpotifyTrack(songs);
   document.getElementById("spotifyEmbed").src += '';
+
+  visitorCounter().then(data => {
+    document.getElementById("visitorCount").innerHTML = "<b>Profile Views:</b> " + data;
+  })
 });
