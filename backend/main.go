@@ -27,7 +27,7 @@ func handler(ctx context.Context, req events.LambdaFunctionURLRequest) (events.L
 
 	resp := events.LambdaFunctionURLResponse{
 		StatusCode: 200,
-		Headers:    map[string]string{"Content Type:": "application/json"},
+		Headers:    map[string]string{"Content-Type": "application/json"},
 		Body:       string(resJson),
 	}
 
