@@ -1,5 +1,0 @@
----
-type: "home"
----
-
-![](/typing.webp)
