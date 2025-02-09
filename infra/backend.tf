@@ -8,3 +8,12 @@ resource "aws_dynamodb_table" "jeselnikxyz-visitor-counter" {
     type = "S"
   }
 }
+
+resource "aws_s3_bucket" "jeselnik_xyz_lambda" {
+  bucket        = "jeselnik-xyz-lambda"
+  force_destroy = true
+
+  tags = {
+    Name = "jeselnik.xyz lambda storage"
+  }
+}

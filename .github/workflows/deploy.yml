@@ -34,16 +34,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: peaceiris/actions-hugo@v3
-      #- name: Compile Site
-      #  run: hugo
-      #  working-directory: ./site
-      #- name: Sync
-      #  run: aws s3 sync . s3://jeselnik.xyz --size-only --delete
-      #  working-directory: ./site/public
-      - name: Compile Site (eddie.jeselnik.xyz)
+      - name: Compile
         run: hugo
         working-directory: ./eddie-jeselnik-xyz
-      - name: Sync eddie.jeselnik.xyz to CloudFlare Pages
+      - name: Sync
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.ACTIONS_CLOUDFLARE }}
@@ -54,6 +48,7 @@ jobs:
     needs: terraform
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - uses: actions/setup-go@v5
       - name: Build Lambda Function
         working-directory: ./backend
@@ -65,3 +60,6 @@ jobs:
       - name: Package Build
         working-directory: ./backend
         run: zip backend.zip bootstrap
+      - name: Upload Build to S3
+        working-directory: ./backend
+        run: aws s3 sync backend.zip s3://jeselnik-xyz-lambda
