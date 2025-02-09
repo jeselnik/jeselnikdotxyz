@@ -28,7 +28,7 @@ jobs:
       - name: Tofu Apply
         run: tofu apply -auto-approve -no-color
   sync:
-    name: Sync
+    name: Sync Frontend
     needs: terraform
     runs-on: ubuntu-latest
     steps:
@@ -49,3 +49,19 @@ jobs:
           apiToken: ${{ secrets.ACTIONS_CLOUDFLARE }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: pages deploy eddie-jeselnik-xyz/public --project-name=eddie-jeselnik-xyz --commit-dirty=true
+  backend:
+    name: Build & Deploy Backend
+    needs: terraform
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-go@v5
+      - name: Build Lambda Function
+        working-directory: ./backend
+        run: go build -o bootstrap main.go
+        env:
+          CGO_ENABLED: 0
+          GOOS: linux
+          GOARCH: amd64
+      - name: Package Build
+        working-directory: ./backend
+        run: zip backend.zip bootstrap
