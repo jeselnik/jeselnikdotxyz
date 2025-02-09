@@ -14,7 +14,7 @@ type Response struct {
 }
 
 /* stub, database operations l8r */
-func handler(ctx context.Context, req events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
+func handler(ctx context.Context, req events.APIGatewayV2HTTPRequest) (events.APIGatewayV2HTTPResponse, error) {
 	resBody := Response{
 		Message:       "405 :p",
 		TotalVisitors: 0,
@@ -22,7 +22,7 @@ func handler(ctx context.Context, req events.APIGatewayProxyRequest) (events.API
 
 	resJson, err := json.Marshal(resBody)
 	if err != nil {
-		return events.APIGatewayProxyResponse{StatusCode: 500}, err
+		return events.APIGatewayV2HTTPResponse{StatusCode: 500}, err
 	}
 
 	resp := events.APIGatewayProxyResponse{

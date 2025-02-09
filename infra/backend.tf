@@ -28,3 +28,33 @@ resource "aws_lambda_function" "jeselnik_xyz_backend" {
   s3_key        = "backend.zip"
   timeout       = 10
 }
+
+resource "aws_apigatewayv2_api" "jeselnik_xyz_backend" {
+  name          = "jeselnik_xyz"
+  protocol_type = "HTTP"
+}
+
+resource "aws_apigatewayv2_integration" "jeselnik_xyz_lambda_int" {
+  api_id           = aws_apigatewayv2_api.jeselnik_xyz_backend.id
+  integration_type = "AWS_PROXY"
+  integration_uri  = aws_lambda_function.jeselnik_xyz_backend.invoke_arn
+}
+
+resource "aws_apigatewayv2_route" "jeselnik_xyz_visitorcounter" {
+  api_id    = aws_apigatewayv2_api.jeselnik_xyz_backend.id
+  route_key = "POST /visit"
+  target    = "integrations/${aws_apigatewayv2_integration.jeselnik_xyz_lambda_int.id}"
+}
+
+resource "aws_apigatewayv2_stage" "default" {
+  api_id      = aws_apigatewayv2_api.jeselnik_xyz_backend.id
+  name        = "$default"
+  auto_deploy = true
+}
+
+resource "aws_lambda_permission" "jeselnik_api" {
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.jeselnik_xyz_backend.arn
+  principal     = "apigateway.amazonaws.com"
+  source_arn    = "${aws_apigatewayv2_api.jeselnik_xyz_backend.execution_arn}/*/*/visit"
+}
