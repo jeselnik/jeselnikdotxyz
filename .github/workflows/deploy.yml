@@ -63,3 +63,5 @@ jobs:
         run: zip backend.zip bootstrap
       - name: Upload Build to S3
         run: aws s3 cp backend.zip s3://jeselnik-xyz-lambda/
+      - name: Update Lambda Code
+        run: aws lambda update-function-code --function-name jeselnik-xyz-backend --s3-bucket jeselnik-xyz-lambda --s3-key backend.zip
