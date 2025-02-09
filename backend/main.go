@@ -3,9 +3,26 @@ package main
 import (
 	"context"
 	"encoding/json"
+	"errors"
+	"log"
+	"strconv"
 
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
+	"github.com/aws/aws-sdk-go-v2/aws"
+	"github.com/aws/aws-sdk-go-v2/config"
+	"github.com/aws/aws-sdk-go-v2/service/dynamodb"
+	"github.com/aws/aws-sdk-go-v2/service/dynamodb/types"
+)
+
+const (
+	cTABLE_NAME    = "jeselnikxyz-visitor-counter"
+	cPARTITION_KEY = "CounterID"
+	cCOUNTER_NAME  = "totalVisitors"
+)
+
+var (
+	dbClient *dynamodb.Client
 )
 
 type Response struct {
@@ -13,11 +30,55 @@ type Response struct {
 	TotalVisitors int    `json:"totalVisitors"`
 }
 
-/* stub, database operations l8r */
+func init() {
+	cfg, err := config.LoadDefaultConfig(context.TODO())
+	if err != nil {
+		log.Fatal(err)
+	}
+	dbClient = dynamodb.NewFromConfig(cfg)
+}
+
+func updateVisitorCount() (int, error) {
+	updateInput := &dynamodb.UpdateItemInput{
+		TableName: aws.String(cTABLE_NAME),
+		Key: map[string]types.AttributeValue{
+			cPARTITION_KEY: &types.AttributeValueMemberS{Value: cCOUNTER_NAME},
+		},
+		UpdateExpression: aws.String("SET totalVisitors = if_not_exists(totalVisitors, :start) + :inc"),
+		ExpressionAttributeValues: map[string]types.AttributeValue{
+			":inc":   &types.AttributeValueMemberN{Value: "1"},
+			":start": &types.AttributeValueMemberN{Value: "0"},
+		},
+		ReturnValues: types.ReturnValueUpdatedNew,
+	}
+
+	result, err := dbClient.UpdateItem(context.TODO(), updateInput)
+	if err != nil {
+		return -1, err
+	}
+
+	val, success := result.Attributes["totalVisitors"].(*types.AttributeValueMemberN)
+	if !success {
+		return -1, errors.New("")
+	}
+
+	count, err := strconv.Atoi(val.Value)
+	if err != nil {
+		return -1, err
+	}
+
+	return count, nil
+}
+
 func handler(ctx context.Context, req events.LambdaFunctionURLRequest) (events.LambdaFunctionURLResponse, error) {
+	count, err := updateVisitorCount()
+	if err != nil {
+		return events.LambdaFunctionURLResponse{StatusCode: 500}, err
+	}
+
 	resBody := Response{
-		Message:       "405 :p",
-		TotalVisitors: 0,
+		Message:       "hey!",
+		TotalVisitors: count,
 	}
 
 	resJson, err := json.Marshal(resBody)
@@ -27,8 +88,10 @@ func handler(ctx context.Context, req events.LambdaFunctionURLRequest) (events.L
 
 	resp := events.LambdaFunctionURLResponse{
 		StatusCode: 200,
-		Headers:    map[string]string{"Content-Type": "application/json"},
-		Body:       string(resJson),
+		Headers: map[string]string{
+			"Content-Type": "application/json",
+		},
+		Body: string(resJson),
 	}
 
 	return resp, nil
