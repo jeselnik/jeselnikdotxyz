@@ -29,6 +29,12 @@ resource "aws_lambda_function" "jeselnik_xyz_backend" {
   timeout       = 10
 }
 
+resource "aws_lambda_function_url" "visit" {
+  function_name      = aws_lambda_function.jeselnik_xyz_backend.function_name
+  authorization_type = "NONE"
+}
+
+/* keep it simple for now, let's just use a lambda function url
 resource "aws_apigatewayv2_api" "jeselnik_xyz_backend" {
   name          = "jeselnik_xyz"
   protocol_type = "HTTP"
@@ -42,7 +48,7 @@ resource "aws_apigatewayv2_integration" "jeselnik_xyz_lambda_int" {
 
 resource "aws_apigatewayv2_route" "jeselnik_xyz_visitorcounter" {
   api_id    = aws_apigatewayv2_api.jeselnik_xyz_backend.id
-  route_key = "POST /visit"
+  route_key = "GET /visit"
   target    = "integrations/${aws_apigatewayv2_integration.jeselnik_xyz_lambda_int.id}"
 }
 
@@ -56,5 +62,5 @@ resource "aws_lambda_permission" "jeselnik_api" {
   action        = "lambda:InvokeFunction"
   function_name = aws_lambda_function.jeselnik_xyz_backend.arn
   principal     = "apigateway.amazonaws.com"
-  source_arn    = "${aws_apigatewayv2_api.jeselnik_xyz_backend.execution_arn}/*/*/visit"
 }
+*/

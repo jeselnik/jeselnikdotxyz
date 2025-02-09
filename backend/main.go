@@ -14,7 +14,7 @@ type Response struct {
 }
 
 /* stub, database operations l8r */
-func handler(ctx context.Context, req events.APIGatewayV2HTTPRequest) (events.APIGatewayV2HTTPResponse, error) {
+func handler(ctx context.Context, req events.LambdaFunctionURLRequest) (events.LambdaFunctionURLResponse, error) {
 	resBody := Response{
 		Message:       "405 :p",
 		TotalVisitors: 0,
@@ -22,10 +22,10 @@ func handler(ctx context.Context, req events.APIGatewayV2HTTPRequest) (events.AP
 
 	resJson, err := json.Marshal(resBody)
 	if err != nil {
-		return events.APIGatewayV2HTTPResponse{StatusCode: 500}, err
+		return events.LambdaFunctionURLResponse{StatusCode: 500}, err
 	}
 
-	resp := events.APIGatewayV2HTTPResponse{
+	resp := events.LambdaFunctionURLResponse{
 		StatusCode: 200,
 		Headers:    map[string]string{"Content Type:": "application/json"},
 		Body:       string(resJson),
