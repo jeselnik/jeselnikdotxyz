@@ -16,10 +16,9 @@ import (
 )
 
 const (
-	cCORS_ALLOWED_ORIGIN = "https://eddie.jeselnik.xyz"
-	cTABLE_NAME          = "jeselnikxyz-visitor-counter"
-	cPARTITION_KEY       = "CounterID"
-	cCOUNTER_NAME        = "totalVisitors"
+	cTABLE_NAME    = "jeselnikxyz-visitor-counter"
+	cPARTITION_KEY = "CounterID"
+	cCOUNTER_NAME  = "totalVisitors"
 )
 
 var (
@@ -72,26 +71,13 @@ func updateVisitorCount() (int, error) {
 }
 
 func handler(ctx context.Context, req events.LambdaFunctionURLRequest) (events.LambdaFunctionURLResponse, error) {
-	var (
-		message string
-		count   int
-		err     error
-	)
-
-	/* so my dev server doesn't inflate the count */
-	if req.Headers["Origin"] != cCORS_ALLOWED_ORIGIN {
-		message = "Origin not whitelisted."
-		count = -1
-	} else {
-		count, err = updateVisitorCount()
-		if err != nil {
-			return events.LambdaFunctionURLResponse{StatusCode: 500}, err
-		}
-		message = "hey!"
+	count, err := updateVisitorCount()
+	if err != nil {
+		return events.LambdaFunctionURLResponse{StatusCode: 500}, err
 	}
 
 	resBody := Response{
-		Message:       message,
+		Message:       "hey!",
 		TotalVisitors: count,
 	}
 

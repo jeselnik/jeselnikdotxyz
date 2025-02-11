@@ -16,8 +16,6 @@ const songs = [
   '00Mb3DuaIH1kjrwOku9CGU',
   /* mcr - famous last words */
   '2d6m2F4I7wCuAKtSsdhh83',
-  /* son - molchat doma */
-  '6bn5OFUhl8lm4VzKEPSzEz'
 ];
 
 /* 
