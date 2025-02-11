@@ -24,6 +24,7 @@ resource "aws_lambda_function" "jeselnik_xyz_backend" {
   package_type  = "Zip"
   handler       = "bootstrap"
   runtime       = "provided.al2023"
+  architectures = ["arm64"]
   /* omg I didn't realise I had to update the code every deploy, that explains it */
   s3_bucket = aws_s3_bucket.jeselnik_xyz_lambda.bucket
   s3_key    = "backend.zip"

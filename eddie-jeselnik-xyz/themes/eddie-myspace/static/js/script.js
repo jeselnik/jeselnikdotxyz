@@ -67,7 +67,9 @@ document.addEventListener("DOMContentLoaded", function() {
   document.getElementById("spotifyEmbed").src = randomSpotifyTrack(songs);
   document.getElementById("spotifyEmbed").src += '';
 
-  visitorCounter().then(data => {
-    document.getElementById("visitorCount").innerHTML = "<b>Profile Views:</b> " + data;
-  })
+  if (! this.location.hostname.includes("localhost") ) {
+    visitorCounter().then(data => {
+      document.getElementById("visitorCount").innerHTML = "<b>Profile Views:</b> " + data;
+    })
+  }
 });

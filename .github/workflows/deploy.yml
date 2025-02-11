@@ -58,7 +58,7 @@ jobs:
         env:
           CGO_ENABLED: 0
           GOOS: linux
-          GOARCH: amd64
+          GOARCH: arm64
       - name: Package Build
         run: zip backend.zip bootstrap
       - name: Upload Build to S3
