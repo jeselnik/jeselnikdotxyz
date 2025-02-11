@@ -66,10 +66,21 @@ document.addEventListener("DOMContentLoaded", function() {
   document.getElementById("location").innerHTML = profile.location;
   document.getElementById("spotifyEmbed").src = randomSpotifyTrack(songs);
   document.getElementById("spotifyEmbed").src += '';
+  
+  const onlineBadge = document.getElementById("onlineBadge");
 
   if (! this.location.hostname.includes("localhost") ) {
     visitorCounter().then(data => {
       document.getElementById("visitorCount").innerHTML = "<b>Profile Views:</b> " + data;
     })
   }
+
+  onlineBadge.addEventListener("mouseover", function(){
+    onlineBadge.src="badges/70.gif";
+  })
+
+  onlineBadge.addEventListener("mouseout", function(){
+    onlineBadge.src="badges/online.gif";
+  })
+
 });
