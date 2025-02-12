@@ -38,6 +38,10 @@ header a {
   padding-left: 50px;
 }
 
+main {
+  padding: 0px 20px 20px 20px;
+}
+
 table {
   background-color: var(--profileElemBg);
 }
@@ -50,8 +54,10 @@ th {
   text-align: left;
 }
 
-.main {
-  padding: 0px 20px 20px 20px;
+.profileElement {
+  background-color: var(--profileElemBg);
+  color: var(--textColor);
+  border-style: solid;
 }
 
 .gridContainer {
@@ -64,12 +70,6 @@ th {
   padding: 10px 10px 10px 10px;
 }
 
-.profileElement {
-  background-color: var(--profileElemBg);
-  color: var(--textColor);
-  border-style: solid;
-}
-
 #rootLink::after {
   content: "eddie.jeselnik.xyz";
 }
@@ -79,7 +79,7 @@ th {
 }
 
 @media only screen and (min-width: 992px) {
-  .main {
+  main {
     padding: 0px 20px 0px 20px;
   }
 
@@ -89,7 +89,7 @@ th {
 }
 
 @media only screen and (min-width: 1200px) {
-  .main {
+  main {
     padding: 0px 375px 0px 375px;
   }
 
