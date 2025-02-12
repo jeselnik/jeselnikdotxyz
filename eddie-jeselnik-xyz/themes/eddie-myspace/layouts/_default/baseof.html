@@ -8,7 +8,11 @@
     {{ partial "header.html" . }}
   </header>
   <main>
-    {{ block "main" . }}{{ end }}
+    <div class="main">
+      <div class="profileElement">
+        {{ block "main" . }}{{ end }}
+      </div>
+    </div>
   </main>
 </body>
 </html>

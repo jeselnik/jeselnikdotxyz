@@ -4,13 +4,16 @@
   {{ partial "head.html" . }}
   <script src="js/profile.js"></script>
   <script src="js/script.js"></script>
+  <meta name="description" content="Eddie Jeselnik's corner of the internet.">
 </head>
 <body>
   <header>
     {{ partial "header.html" . }}
   </header>
   <main>
-    {{ block "main" . }}{{ end }}
+    <div class="main">
+      {{ block "main" . }}{{ end }}
+    </div>
   </main>
 </body>
 </html>
