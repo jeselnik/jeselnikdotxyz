@@ -62,6 +62,11 @@ async function visitorCounter() {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
+  env = "production";
+  if (this.location !== "https://eddie.jeselnik.xyz") {
+    env = "test";
+  }
+
   document.getElementById("agePar").innerHTML = whatsMyAgeAgain(profile.birthday) + " years old";
   document.getElementById("location").innerHTML = profile.location;
   document.getElementById("spotifyEmbed").src = randomSpotifyTrack(songs);
@@ -69,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function() {
   
   const onlineBadge = document.getElementById("onlineBadge");
 
-  if (! this.location.hostname.includes("localhost") ) {
+  if ( env === "production" ) {
     visitorCounter().then(data => {
       document.getElementById("visitorCount").innerHTML = "<b>Profile Views:</b> " + data;
     })
