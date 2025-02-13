@@ -76,18 +76,20 @@ function main(): void {
   spotifyEmbed.src = randomSpotifyTrack(songs);
   spotifyEmbed.src += '';
 
-  if ( env === "production" ) {
-    visitorCounter().then(data => {
-      document.getElementById("visitorCount")!.innerHTML = "<b>Profile Views:</b> " + data;
-    })
-  }
-
   onlineBadge.addEventListener("mouseover", function(){
     onlineBadge.src="badges/70.gif";
   })
 
   onlineBadge.addEventListener("mouseout", function(){
     onlineBadge.src="badges/online.gif";
+  })
+
+  if (env !== "production") {
+    return
+  }
+
+  visitorCounter().then(data => {
+    document.getElementById("visitorCount")!.innerHTML = "<b>Profile Views:</b> " + data;
   })
 }
 
