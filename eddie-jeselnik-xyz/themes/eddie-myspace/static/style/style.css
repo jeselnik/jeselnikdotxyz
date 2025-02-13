@@ -60,14 +60,14 @@ th {
   border-style: solid;
 }
 
+.profileElement {
+  padding: 10px 10px 10px 10px;
+}
+
 .gridContainer {
   display: grid;
   row-gap: 10px;
   column-gap: 20px;
-}
-
-.gridContainer div {
-  padding: 10px 10px 10px 10px;
 }
 
 #rootLink::after {

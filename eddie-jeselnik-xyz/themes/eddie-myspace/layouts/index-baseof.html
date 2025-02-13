@@ -2,8 +2,8 @@
 <html lang="{{ site.Language.LanguageCode }}" dir="{{ or site.Language.LanguageDirection `ltr` }}">
 <head>
   {{ partial "head.html" . }}
-  <script src="js/profile.js"></script>
-  <script src="js/script.js"></script>
+  {{ $indexJs := resources.Get "ts/index/index.ts" | js.Build "js/index.js" }}
+  <script src="{{ $indexJs.RelPermalink }}" defer></script>
   <meta name="description" content="Eddie Jeselnik's corner of the internet.">
 </head>
 <body>

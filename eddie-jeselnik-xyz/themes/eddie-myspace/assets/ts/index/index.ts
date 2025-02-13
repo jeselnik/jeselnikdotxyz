@@ -1,4 +1,7 @@
-const songs = [
+/* tbd: add medicare #, mygov security question answers */
+const birthday: Date = new Date("July 28, 2000 10:00:00");
+
+const songs: Array<string> = [
   /* nurnberg - valasy */
   '0me5bs5Ww1boCUR4tdcbXd',
   /* blink 182 - what's my age again */
@@ -24,13 +27,12 @@ const songs = [
   Why would you wish that on me?
   I never wanna act my age
 */
-function whatsMyAgeAgain(bDay) {
-  const dateBithday = new Date(bDay);
-  const dateNow = new Date();
+function whatsMyAgeAgain(bDay: Date): number {
+  const dateNow: Date = new Date();
 
-  let diff = dateNow.getFullYear() - dateBithday.getFullYear();
-  const monthDiff = dateNow.getMonth() - dateBithday.getMonth();
-  const dateDiff = dateNow.getDate() - dateBithday.getDay();
+  let diff: number = dateNow.getFullYear() - bDay.getFullYear();
+  const monthDiff: number = dateNow.getMonth() - bDay.getMonth();
+  const dateDiff: number = dateNow.getDate() - bDay.getDay();
 
   if (
     monthDiff < 0 ||
@@ -46,37 +48,37 @@ function whatsMyAgeAgain(bDay) {
   return diff;
 }
 
-function buildSpotifyUrl(songID) {
+function buildSpotifyUrl(songID: string): string {
   return "https://open.spotify.com/embed/track/" + songID + "?utm_source=generator";
 }
 
-function randomSpotifyTrack(songsArr) {
+function randomSpotifyTrack(songsArr: Array<string>): string {
   var trackIndex = Math.floor(Math.random()*songsArr.length);
   return buildSpotifyUrl(songsArr[trackIndex]);
 }
 
 async function visitorCounter() {
-  response = await fetch("https://dg3oo7ffiqitokznjzarauyq440cwnyc.lambda-url.ap-southeast-2.on.aws");
+  let response = await fetch("https://dg3oo7ffiqitokznjzarauyq440cwnyc.lambda-url.ap-southeast-2.on.aws");
   const data = await response.json();
   return data.totalVisitors;
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-  env = "production";
-  if (this.location !== "https://eddie.jeselnik.xyz") {
+function main(): void {
+  let env = "production";
+  if (! this.location.href.includes("https://eddie.jeselnik.xyz")) {
     env = "test";
   }
 
-  document.getElementById("agePar").innerHTML = whatsMyAgeAgain(profile.birthday) + " years old";
-  document.getElementById("location").innerHTML = profile.location;
-  document.getElementById("spotifyEmbed").src = randomSpotifyTrack(songs);
-  document.getElementById("spotifyEmbed").src += '';
-  
-  const onlineBadge = document.getElementById("onlineBadge");
+  const onlineBadge = document.getElementById("onlineBadge") as HTMLImageElement;
+  const spotifyEmbed = document.getElementById("spotifyEmbed") as HTMLIFrameElement;
+
+  document.getElementById("agePar")!.innerHTML = whatsMyAgeAgain(birthday) + " years old";
+  spotifyEmbed.src = randomSpotifyTrack(songs);
+  spotifyEmbed.src += '';
 
   if ( env === "production" ) {
     visitorCounter().then(data => {
-      document.getElementById("visitorCount").innerHTML = "<b>Profile Views:</b> " + data;
+      document.getElementById("visitorCount")!.innerHTML = "<b>Profile Views:</b> " + data;
     })
   }
 
@@ -87,5 +89,8 @@ document.addEventListener("DOMContentLoaded", function() {
   onlineBadge.addEventListener("mouseout", function(){
     onlineBadge.src="badges/online.gif";
   })
+}
 
+document.addEventListener("DOMContentLoaded", function() {
+  main();
 });
