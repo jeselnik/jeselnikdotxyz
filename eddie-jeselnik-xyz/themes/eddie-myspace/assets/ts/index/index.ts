@@ -79,11 +79,11 @@ function main(): void {
   spotifyEmbed.src += '';
 
   onlineBadge.addEventListener("mouseover", function(){
-    onlineBadge.src="badges/70.gif";
+    onlineBadge.src="/badges/70.gif";
   })
 
   onlineBadge.addEventListener("mouseout", function(){
-    onlineBadge.src="badges/online.gif";
+    onlineBadge.src="/badges/online.gif";
   })
 
   if (env !== "production") {
