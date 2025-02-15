@@ -19,6 +19,8 @@ const songs: Array<string> = [
   '00Mb3DuaIH1kjrwOku9CGU',
   /* mcr - famous last words */
   '2d6m2F4I7wCuAKtSsdhh83',
+  /* molchat doma - son */
+  '6YNHB13YZEUFWtCOtJrfrb'
 ];
 
 /* 
