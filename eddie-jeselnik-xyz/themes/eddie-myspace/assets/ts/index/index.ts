@@ -20,7 +20,7 @@ const songs: Array<string> = [
   /* mcr - famous last words */
   '2d6m2F4I7wCuAKtSsdhh83',
   /* molchat doma - son */
-  '6YNHB13YZEUFWtCOtJrfrb'
+  '6bn5OFUhl8lm4VzKEPSzEz',
 ];
 
 /* 
