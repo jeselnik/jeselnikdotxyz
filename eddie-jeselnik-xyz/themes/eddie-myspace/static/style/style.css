@@ -1,5 +1,6 @@
 :root {
   --myspaceBlue: #003399;
+  --navColor: #6698CB;
   --bodyBg: black;
   --profileElemBg: #222222;
   --textColor: grey;
@@ -21,17 +22,39 @@ body {
   font-weight: 400;
 }
 
-header {
+header #header {
   display: flex;
   background-color: var(--myspaceBlue);
   color: white;
   height: 6vh;
   width: 100%;
   align-items: center;
-  margin: 0px 0px 20px 0px;
 }
 
-header a {
+header #nav {
+  background-color: var(--navColor);
+  height: 3vh;
+  margin: 0px 0px 20px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+header #nav * {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+header #nav a {
+  text-decoration: none;
+  color: white;
+}
+
+header #nav a:hover {
+  text-decoration: underline;
+}
+
+header #header a {
   text-decoration: none;
   color: inherit;
   background: none;
@@ -79,7 +102,7 @@ th {
     padding: 0px 20px 0px 20px;
   }
 
-  header a {
+  header #header a {
     padding-left: 20px;
   }
 }
@@ -89,7 +112,7 @@ th {
     padding: 0px 375px 0px 375px;
   }
 
-  header a {
+  header #header a {
     padding-left: 375px;
   }
 } 

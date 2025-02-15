@@ -1,1 +1,14 @@
-<a id="rootLink" href="/"></a>
+<div id="header">
+  <a id="rootLink" href="/"></a>
+</div>
+<div id="nav">
+  | <a href="/">Home</a>
+  {{ $contentDir := "content" }}
+  {{ $subdirs := readDir $contentDir }}
+  {{ range $subdirs }}
+    {{ if .IsDir }}
+      | <a href="{{ .Name | urlize | relURL }}">{{ .Name | title }}</a>
+    {{ end }}
+  {{ end }}
+  |
+</div>
