@@ -20,9 +20,11 @@
     <div id="blogEntries" class="profileElement textElement">
       Eddie's latest blog entries:
       <br>
+      <ul>
       {{ range where .Site.RegularPages "Type" "posts" }}
-        <a href="{{ .RelPermalink }}">{{ .Date.Format "2006-01-02" }} - {{ .Title }}</a>
+        <li><a href="{{ .RelPermalink }}">{{ .Date.Format "2006-01-02" }} - {{ .Title }}</a></li>
       {{ end }}
+      </ul>
     </div>
 
     <div id="blurbs" class="profileElement">
