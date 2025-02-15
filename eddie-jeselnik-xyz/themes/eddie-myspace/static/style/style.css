@@ -74,10 +74,6 @@ th {
   content: "eddie.jeselnik.xyz";
 }
 
-#rootLink:hover::after {
-  content: "MySpace.com";
-}
-
 @media only screen and (min-width: 992px) {
   main {
     padding: 0px 20px 0px 20px;
