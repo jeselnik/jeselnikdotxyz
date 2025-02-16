@@ -30,7 +30,7 @@
 
 @media only screen and (min-width: 992px) {
   #profileIndex {
-    grid-template-columns: 30vw 50vw;
+    grid-template-columns: 40% auto;
   }
 
   #profileBox {
@@ -61,6 +61,6 @@
 
 @media only screen and (min-width: 1200px) {
   #profileIndex {
-    grid-template-columns: 20vw 40vw;
+    grid-template-columns: 35% auto;
   }
 } 

@@ -63,7 +63,8 @@ header #header a {
 }
 
 main {
-  padding: 0px 20px 20px 20px;
+  margin-left: 5vw;
+  margin-right: 5vw;
 }
 
 a {
@@ -110,22 +111,22 @@ th {
 
 @media only screen and (min-width: 992px) {
   main {
-    padding-left: 10vw;
-    padding-right: 10vw;
+    margin-left: 7vw;
+    margin-right: 7vw;
   }
 
   header #header a {
-    padding-left: 10vw;
+    margin-left: 10vw;
   }
 }
 
 @media only screen and (min-width: 1200px) {
   main {
-    padding-left: 20vw;
-    padding-right: 20vw;
+    margin-left: 20vw;
+    margin-right: 20vw;
   }
 
   header #header a {
-    padding-left: 20vw;
+    margin-left: 20vw;
   }
 } 
