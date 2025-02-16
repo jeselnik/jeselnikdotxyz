@@ -113,7 +113,7 @@ th {
   }
 
   header #header a {
-    padding-left: 20px;
+    padding-left: 10vw;
   }
 }
 
@@ -124,6 +124,6 @@ th {
   }
 
   header #header a {
-    padding-left: 375px;
+    padding-left: 20vw;
   }
 } 
