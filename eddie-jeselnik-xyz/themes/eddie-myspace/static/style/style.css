@@ -90,10 +90,12 @@ th {
   background-color: var(--profileElemBg);
   color: var(--textColor);
   border-style: solid;
+  padding: 10px 10px 10px 10px;
 }
 
-.profileElement {
-  padding: 10px 10px 10px 10px;
+.blogPost img {
+  margin: 0 auto;
+  display: block;
 }
 
 .gridContainer {
