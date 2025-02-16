@@ -108,7 +108,8 @@ th {
 
 @media only screen and (min-width: 992px) {
   main {
-    padding: 0px 20px 0px 20px;
+    padding-left: 10vw;
+    padding-right: 10vw;
   }
 
   header #header a {
@@ -118,7 +119,8 @@ th {
 
 @media only screen and (min-width: 1200px) {
   main {
-    padding: 0px 375px 0px 375px;
+    padding-left: 20vw;
+    padding-right: 20vw;
   }
 
   header #header a {

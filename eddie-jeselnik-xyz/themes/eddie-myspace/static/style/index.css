@@ -23,13 +23,14 @@
   height: 200px;
   padding: 0px 10px 10px 0px;
   width: auto;
+  max-width: unset;
   aspect-ratio: 1;
   float: left;
 }
 
 @media only screen and (min-width: 992px) {
   #profileIndex {
-    grid-template-columns: 0.55fr 0.75fr;
+    grid-template-columns: 30vw 30vw;
   }
 
   #profileBox {
