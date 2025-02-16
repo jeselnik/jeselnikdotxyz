@@ -2,6 +2,5 @@ local-deploy.sh
 *.hcl
 *tfstate*
 infra/.terraform
-site/resources
-site/public
 eddie-jeselnik-xyz/public
+eddie-jeselnik-xyz/assets/jsconfig.json
