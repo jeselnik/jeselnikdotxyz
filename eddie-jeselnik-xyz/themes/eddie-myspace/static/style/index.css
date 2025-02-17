@@ -2,6 +2,23 @@
   content: "MySpace.com";
 }
 
+.flexContainer {
+  display: flex;
+}
+
+#profileBox #profileLeft {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+#profileBox #profileRight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 15px;
+}
+
 #profileBox #displayName {
   font-weight: bold;
   font-size: large;
@@ -25,7 +42,6 @@
   width: auto;
   max-width: unset;
   aspect-ratio: 1;
-  float: left;
 }
 
 @media only screen and (min-width: 992px) {
