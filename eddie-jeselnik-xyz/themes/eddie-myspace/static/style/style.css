@@ -26,14 +26,14 @@ header #header {
   display: flex;
   background-color: var(--myspaceBlue);
   color: white;
-  height: 6vh;
+  height: 4em;
   width: 100%;
   align-items: center;
 }
 
 header #nav {
   background-color: var(--navColor);
-  height: 3vh;
+  height: 2em;
   margin: 0px 0px 20px 0px;
   display: flex;
   align-items: center;
