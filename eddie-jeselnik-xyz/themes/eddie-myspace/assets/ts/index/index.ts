@@ -21,6 +21,8 @@ const songs: Array<string> = [
   '2d6m2F4I7wCuAKtSsdhh83',
   /* molchat doma - son */
   '6bn5OFUhl8lm4VzKEPSzEz',
+  /* all american rejects - it ends tonight */
+  '5ZqNz8GXWpkb95f7aVxTA0',
 ];
 
 /* 
