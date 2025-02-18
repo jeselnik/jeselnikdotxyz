@@ -4,7 +4,7 @@ date: 2022-06-19
 draft: false
 ---
 
-<script src="https://asciinema.org/a/qfW1rYbQ1uuhvxX9QywEatufm.js" id="asciicast-qfW1rYbQ1uuhvxX9QywEatufm" async="true" autoplay=1 loop=1></script>
+<script src="https://asciinema.org/a/qfW1rYbQ1uuhvxX9QywEatufm.js" data-autoplay="1" data-loop="1" id="asciicast-qfW1rYbQ1uuhvxX9QywEatufm" async="true"></script>
 
 *rb-scrobbler* is a program I wrote in Go which takes in a log of songs listened to on an MP3 player
 running [rockbox](https://rockbox.org) custom firmware and submits them with accurate timestamps to
