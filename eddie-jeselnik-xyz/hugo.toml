@@ -4,3 +4,5 @@ title = "Eddie's (My)Space"
 theme = 'eddie-myspace'
 [params]
 friendlyBaseURL = "eddie.jeselnik.xyz"
+[markup.goldmark.renderer]
+unsafe = true
