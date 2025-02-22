@@ -22,11 +22,12 @@ const (
 )
 
 var (
-	errAttrFetch = errors.New("unable to retrieve totalVisitors attribute")
-	dbClient     *dynamodb.Client
+	dbClient           *dynamodb.Client
+	errAttrFetch       = errors.New("unable to retrieve totalVisitors attribute")
+	genericServerError = events.LambdaFunctionURLResponse{StatusCode: 500}
 )
 
-type Response struct {
+type VisitorCountResponse struct {
 	Message       string `json:"message"`
 	TotalVisitors int    `json:"totalVisitors"`
 }
@@ -71,20 +72,20 @@ func updateVisitorCount() (int, error) {
 	return count, nil
 }
 
-func handler(ctx context.Context, req events.LambdaFunctionURLRequest) (events.LambdaFunctionURLResponse, error) {
+func visitorCount() (events.LambdaFunctionURLResponse, error) {
 	count, err := updateVisitorCount()
 	if err != nil {
-		return events.LambdaFunctionURLResponse{StatusCode: 500}, err
+		return genericServerError, err
 	}
 
-	resBody := Response{
-		Message:       "hey!",
+	resBody := VisitorCountResponse{
+		Message:       "incremented",
 		TotalVisitors: count,
 	}
 
 	resJson, err := json.Marshal(resBody)
 	if err != nil {
-		return events.LambdaFunctionURLResponse{StatusCode: 500}, err
+		return genericServerError, err
 	}
 
 	resp := events.LambdaFunctionURLResponse{
@@ -96,6 +97,11 @@ func handler(ctx context.Context, req events.LambdaFunctionURLRequest) (events.L
 	}
 
 	return resp, nil
+}
+
+func handler(ctx context.Context, req events.LambdaFunctionURLRequest) (events.LambdaFunctionURLResponse, error) {
+	/* Only one route (for now?) */
+	return visitorCount()
 }
 
 func main() {
