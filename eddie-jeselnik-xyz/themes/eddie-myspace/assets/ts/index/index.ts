@@ -1,3 +1,5 @@
+/*! Check github for the un-minified code :p */
+
 /* tbd: add medicare #, mygov security question answers */
 const birthday: Date = new Date("July 28, 2000 10:00:00");
 
@@ -61,8 +63,12 @@ function randomSpotifyTrack(songsArr: Array<string>): string {
   return buildSpotifyUrl(songsArr[trackIndex]);
 }
 
-async function visitorCounter() {
-  let response = await fetch("https://dg3oo7ffiqitokznjzarauyq440cwnyc.lambda-url.ap-southeast-2.on.aws");
+async function visitorCounter(): Promise<number> {
+  const response = await fetch("https://dg3oo7ffiqitokznjzarauyq440cwnyc.lambda-url.ap-southeast-2.on.aws");
+  if (!response.ok) {
+    throw new Error("Failed to fetch visitor count!");
+  }
+
   const data = await response.json();
   return data.totalVisitors;
 }
@@ -92,9 +98,13 @@ function main(): void {
     return
   }
 
-  visitorCounter().then(data => {
-    document.getElementById("visitorCount")!.innerHTML = "<b>Profile Views:</b> " + data;
-  })
+  visitorCounter()
+    .then(data => {
+      document.getElementById("visitorCount")!.innerHTML = "<b>Profile Views:</b> " + data;
+    })
+    .catch(error => {
+      console.error(error.message);
+    });
 }
 
 document.addEventListener("DOMContentLoaded", function() {

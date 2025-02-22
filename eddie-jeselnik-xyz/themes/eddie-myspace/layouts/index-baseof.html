@@ -3,6 +3,9 @@
 <head>
   {{ partial "head.html" . }}
   {{ $indexJs := resources.Get "ts/index/index.ts" | js.Build "js/index.js" }}
+  {{ if eq hugo.Environment "production" }}
+    {{ $indexJs = $indexJs | minify }}
+  {{ end }}
   <script src="{{ $indexJs.RelPermalink }}"></script>
   <link href="/style/index.css" rel="stylesheet">
   <meta name="description" content="Eddie Jeselnik's corner of the internet.">
