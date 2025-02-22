@@ -22,7 +22,8 @@ const (
 )
 
 var (
-	dbClient *dynamodb.Client
+	errAttrFetch = errors.New("unable to retrieve totalVisitors attribute")
+	dbClient     *dynamodb.Client
 )
 
 type Response struct {
@@ -59,7 +60,7 @@ func updateVisitorCount() (int, error) {
 
 	val, success := result.Attributes["totalVisitors"].(*types.AttributeValueMemberN)
 	if !success {
-		return -1, errors.New("")
+		return -1, errAttrFetch
 	}
 
 	count, err := strconv.Atoi(val.Value)
