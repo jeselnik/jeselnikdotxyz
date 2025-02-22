@@ -4,7 +4,7 @@
 <div id="nav">
   | <a href="/">Home</a>
   {{ range where .Site.Sections "Section" "!=" "" }}
-  | <a href="{{ .Permalink }}">{{ .Title }}</a>
+  | <a href="{{ .RelPermalink }}">{{ .Title }}</a>
   {{ end }}
   |
 </div>
