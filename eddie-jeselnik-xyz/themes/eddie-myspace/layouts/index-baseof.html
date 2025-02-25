@@ -7,7 +7,11 @@
     {{ $indexJs = $indexJs | minify }}
   {{ end }}
   <script src="{{ $indexJs.RelPermalink }}" defer></script>
-  <link href="/style/index.css" rel="stylesheet">
+  {{ $indexStyle := resources.Get "style/index.css" }}
+  {{ if eq hugo.Environment "production" }}
+    {{ $indexStyle = $indexStyle | resources.Minify }}
+  {{ end }}
+  <link href="{{ $indexStyle.RelPermalink }}" rel="stylesheet">
   <meta name="description" content="Eddie Jeselnik's corner of the internet.">
 </head>
 <body>
