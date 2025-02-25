@@ -6,7 +6,7 @@
   {{ if eq hugo.Environment "production" }}
     {{ $indexJs = $indexJs | minify }}
   {{ end }}
-  <script src="{{ $indexJs.RelPermalink }}"></script>
+  <script src="{{ $indexJs.RelPermalink }}" defer></script>
   <link href="/style/index.css" rel="stylesheet">
   <meta name="description" content="Eddie Jeselnik's corner of the internet.">
 </head>
