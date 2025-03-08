@@ -99,6 +99,10 @@ th {
   padding: 10px 10px 10px 10px;
 }
 
+.blogPost {
+  min-height: 75vh;
+}
+
 .blogPost img {
   margin: 0 auto;
   display: block;
