@@ -125,17 +125,17 @@ th {
   }
 
   header #header a {
-    margin-left: 10vw;
+    margin-left: 7vw;
   }
 }
 
-@media only screen and (min-width: 1200px) {
+@media only screen and (min-width: 1400px) {
   main {
-    margin-left: 20vw;
-    margin-right: 20vw;
+    margin-left: 15vw;
+    margin-right: 15vw;
   }
 
   header #header a {
-    margin-left: 20vw;
+    margin-left: 15vw;
   }
 } 
