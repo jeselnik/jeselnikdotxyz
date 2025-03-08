@@ -46,7 +46,7 @@
 
 @media only screen and (min-width: 992px) {
   #profileIndex {
-    grid-template-columns: 40% auto;
+    grid-template-columns: 35% auto;
   }
 
   #profileBox {
