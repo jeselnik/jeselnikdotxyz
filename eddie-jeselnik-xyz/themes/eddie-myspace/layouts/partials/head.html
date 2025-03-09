@@ -4,7 +4,7 @@
   <meta name="viewport" content="width=device-width; initial-scale=1.0">
 
   {{ $style := resources.Get "style/style.css" }}
-  {{ if eq hugo.Environment "production" }}
+  {{ if hugo.IsProduction }}
     {{ $style = $style | resources.Minify }}
   {{ end }}
   <link href="{{ $style.RelPermalink }}" rel="stylesheet">

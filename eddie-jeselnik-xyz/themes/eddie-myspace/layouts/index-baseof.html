@@ -3,12 +3,12 @@
 <head>
   {{ partial "head.html" . }}
   {{ $indexJs := resources.Get "ts/index/index.ts" | js.Build "js/index.js" }}
-  {{ if eq hugo.Environment "production" }}
+  {{ if hugo.IsProduction }}
     {{ $indexJs = $indexJs | minify }}
   {{ end }}
   <script src="{{ $indexJs.RelPermalink }}" defer></script>
   {{ $indexStyle := resources.Get "style/index.css" }}
-  {{ if eq hugo.Environment "production" }}
+  {{ if hugo.IsProduction }}
     {{ $indexStyle = $indexStyle | resources.Minify }}
   {{ end }}
   <link href="{{ $indexStyle.RelPermalink }}" rel="stylesheet">
