@@ -65,7 +65,7 @@ header #header a {
   text-decoration: none;
   color: inherit;
   background: none;
-  padding-left: 50px;
+  margin-left: 5vw;
 }
 
 main {
