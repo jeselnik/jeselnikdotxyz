@@ -2,12 +2,12 @@
 <html lang="{{ site.Language.LanguageCode }}" dir="{{ or site.Language.LanguageDirection `ltr` }}">
 <head>
   {{ partial "head.html" . }}
-  {{ $indexJs := resources.Get "ts/index/index.ts" | js.Build "js/index.js" }}
+  {{ $indexJs := resources.Get "ts/index/index.ts" | js.Build "js/index.js" | fingerprint }}
   {{ if hugo.IsProduction }}
     {{ $indexJs = $indexJs | minify }}
   {{ end }}
   <script src="{{ $indexJs.RelPermalink }}" defer></script>
-  {{ $indexStyle := resources.Get "style/index.css" }}
+  {{ $indexStyle := resources.Get "style/index.css" | fingerprint }}
   {{ if hugo.IsProduction }}
     {{ $indexStyle = $indexStyle | resources.Minify }}
   {{ end }}
