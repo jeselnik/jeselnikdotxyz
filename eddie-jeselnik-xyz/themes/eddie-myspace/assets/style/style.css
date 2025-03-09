@@ -4,13 +4,19 @@
   --bodyBg: black;
   --profileElemBg: #222222;
   --textColor: grey;
+  box-sizing: border-box;
+  line-height: 1.3;
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
 }
 
-* {
-  box-sizing: border-box;
+*, *::before, *::after {
+  box-sizing: inherit;
 }
 
 img {
+  height: auto;
   max-width: 100%;
 }
 
