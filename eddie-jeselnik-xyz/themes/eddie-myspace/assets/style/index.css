@@ -36,12 +36,11 @@
   padding: 0;
 }
 
-#profileBox #pfp {
+img#pfp {
   height: 200px;
-  padding: 0px 10px 10px 0px;
-  width: auto;
-  max-width: unset;
   aspect-ratio: 1;
+  margin-right: 10px;
+  max-width: unset;
 }
 
 @media only screen and (min-width: 1200px) {
