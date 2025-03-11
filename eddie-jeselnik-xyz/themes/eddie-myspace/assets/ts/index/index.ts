@@ -25,6 +25,8 @@ const songs: Array<string> = [
   '6bn5OFUhl8lm4VzKEPSzEz',
   /* all american rejects - it ends tonight */
   '5ZqNz8GXWpkb95f7aVxTA0',
+  /* magdalena bay - you lose! */
+  '0tP8FKhJsar5y4JcOH4Rjp',
 ];
 
 /* 
