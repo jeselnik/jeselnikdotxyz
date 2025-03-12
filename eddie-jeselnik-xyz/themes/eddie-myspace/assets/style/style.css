@@ -97,11 +97,6 @@ th {
   text-align: left;
 }
 
-.asciicast {
-  max-width: 30vw;
-  margin: 0 auto !important;
-}
-
 .profileElement {
   background-color: var(--profileElemBg);
   color: var(--textColor);
