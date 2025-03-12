@@ -3,7 +3,7 @@
 </div>
 <div id="nav">
   | <a href="/">Home</a>
-  {{ range where .Site.Sections "Section" "!=" "" }}
+  {{ range sort (where .Site.Sections "Section" "!=" "") "Title" }}
   | <a href="{{ .RelPermalink }}">{{ .Title }}</a>
   {{ end }}
   |
