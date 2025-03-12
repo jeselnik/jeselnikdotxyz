@@ -82,7 +82,7 @@ function main(): void {
   }
 
   const onlineBadge = document.getElementById("onlineBadge") as HTMLImageElement;
-  const spotifyEmbed = document.getElementById("spotifyEmbed") as HTMLIFrameElement;
+  const spotifyEmbed = document.getElementById("musicBox") as HTMLIFrameElement;
 
   document.getElementById("agePar")!.innerHTML = whatsMyAgeAgain(birthday) + " years old";
   spotifyEmbed.src = randomSpotifyTrack(songs);

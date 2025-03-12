@@ -1,60 +1,54 @@
 {{ define "main" }}
-  <div class="gridContainer" id="profileIndex">
-    <div id="profileBox" class="profileElement">
-      <p id="displayName">Eddie</p>
-      <div class="flexContainer">
-        <div id="profileLeft">
-          <img id="pfp" src="pfp.webp" alt="Me!">
-          <p id="visitorCount"></p>
-        </div>
-        <div id="profileRight">
-          <span><q>When I was in prison, I was wrapped up in all those deep books. 
-          That Tolstoy crap - people shouldn't read that stuff.</q> - <b>Mike Tyson</b></span>
-          <span>Male</span>
-          <span id="agePar"></span>
-          <span id="location">Melbourne, Australia</span>
-          <img id="onlineBadge" src="/badges/online.gif"/>
-        </div>
+  <div id="profileBox" class="profileElement">
+    <p id="displayName">Eddie</p>
+    <div class="flexContainer">
+      <div id="profileLeft">
+        <img id="pfp" src="pfp.webp" alt="Me!">
+        <p id="visitorCount"></p>
       </div>
-      <span>View My: <a href="/blog">Blog</a></span>
+      <div id="profileRight">
+        <span><q>When I was in prison, I was wrapped up in all those deep books. 
+        That Tolstoy crap - people shouldn't read that stuff.</q> - <b>Mike Tyson</b></span>
+        <span>Male</span>
+        <span id="agePar"></span>
+        <span id="location">Melbourne, Australia</span>
+        <img id="onlineBadge" src="/badges/online.gif"/>
+      </div>
     </div>
-
-    <div id="musicBox" class="profileElement" title="i'd autoplay if those w3c communists would let me">
-      <iframe id="spotifyEmbed" style="border-radius:12px" src="" width="100%" height="100" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-    </div>
-
-    <div id="blogEntries" class="profileElement textElement">
-      Eddie's latest blog entries:
-      <br>
-      <ul>
-      {{ range where .Site.RegularPages "Type" "posts" }}
-        <li><a href="{{ .RelPermalink }}">{{ .Date.Format "2006-01-02" }} - {{ .Title }}</a></li>
-      {{ end }}
-      </ul>
-    </div>
-
-    <div id="blurbs" class="profileElement">
-      <b>Still Under Construction :))</b>
-    </div>
-
-    <div id="interests" class="profileElement">
-      <table>
-        <tr>
-          <th colspan="2">Eddie's Interests</th>
-        </tr>
-        <tr>
-          <th>Music:</th>
-          <td>Post-Punk, 2010s Indie</td>
-        </tr>
-        <tr>
-          <th>TV:</th>
-          <td>Curb Your Enthusiasm, Peep Show</td>
-        </tr>
-        <tr>
-          <th>Dislikes:</th>
-          <td>Being compared to Edward from that twilight movie!!! <b> >:( </b></td>
-        </tr>
-      </table>
-    </div>
+    <span>View My: <a href="/blog">Blog</a></span>
   </div>
+
+  <iframe id="musicBox" class="profileElement" style="border-radius:12px" src="" width="100%" height="100" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+  <div id="blogEntries" class="profileElement textElement">
+    Eddie's latest blog entries:
+    <br>
+    <ul>
+    {{ range where .Site.RegularPages "Type" "posts" }}
+      <li><a href="{{ .RelPermalink }}">{{ .Date.Format "2006-01-02" }} - {{ .Title }}</a></li>
+    {{ end }}
+    </ul>
+  </div>
+
+  <div id="blurbs" class="profileElement">
+    <b>Still Under Construction :))</b>
+  </div>
+
+  <table id="interests" class="profileElement">
+    <tr>
+      <th colspan="2">Eddie's Interests</th>
+    </tr>
+    <tr>
+      <th>Music:</th>
+      <td>Post-Punk, 2010s Indie</td>
+    </tr>
+    <tr>
+      <th>TV:</th>
+      <td>Curb Your Enthusiasm, Peep Show</td>
+    </tr>
+    <tr>
+      <th>Dislikes:</th>
+      <td>Being compared to Edward from that twilight movie!!! <b> >:( </b></td>
+    </tr>
+  </table>
 {{ end }}
