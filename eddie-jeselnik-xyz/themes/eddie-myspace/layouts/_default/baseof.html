@@ -7,10 +7,8 @@
   <header>
     {{ partial "header.html" . }}
   </header>
-  <main>
-    <div class="profileElement blogPost">
-      {{ block "main" . }}{{ end }}
-    </div>
+  <main class="profileElement blogPost">
+    {{ block "main" . }}{{ end }}
   </main>
 </body>
 </html>
