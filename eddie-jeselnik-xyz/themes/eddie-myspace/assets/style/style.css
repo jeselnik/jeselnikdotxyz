@@ -33,8 +33,8 @@ body {
 }
 
 main {
-  margin-left: 2.5vw;
-  margin-right: 2.5vw;
+  margin-left: 1.25vw;
+  margin-right: 1.25vw;
   color: var(--textColor);
   font-weight: 500;
 }
@@ -76,7 +76,7 @@ header #header a {
   text-decoration: none;
   color: inherit;
   background: none;
-  margin-left: 2.5vw;
+  margin-left: 1.25vw;
 }
 
 a {
