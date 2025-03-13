@@ -69,12 +69,12 @@ header #header a {
   text-decoration: none;
   color: inherit;
   background: none;
-  margin-left: 5vw;
+  margin-left: 2.5vw;
 }
 
 main {
-  margin-left: 5vw;
-  margin-right: 5vw;
+  margin-left: 2.5vw;
+  margin-right: 2.5vw;
 }
 
 a {
@@ -125,12 +125,12 @@ th {
 
 @media only screen and (min-width: 992px) {
   main {
-    margin-left: 7vw;
-    margin-right: 7vw;
+    margin-left: 5vw;
+    margin-right: 5vw;
   }
 
   header #header a {
-    margin-left: 7vw;
+    margin-left: 5vw;
   }
 }
 

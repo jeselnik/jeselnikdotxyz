@@ -6,6 +6,10 @@
   display: flex;
 }
 
+#profileBox .flexContainer {
+  flex-direction: column;
+}
+
 #profileBox #profileLeft {
   display: flex;
   flex-direction: column;
@@ -42,7 +46,18 @@ img#pfp {
   max-width: unset;
 }
 
-@media only screen and (min-width: 1200px) {
+@media only screen and (min-width: 768px) {
+  #profileBox .flexContainer {
+    flex-direction: row;
+  }
+}
+
+
+@media only screen and (min-width: 992px) {
+  #profileBox .flexContainer {
+    flex-direction: column;
+  }
+
   #profileIndex {
     grid-template-columns: 35% auto;
   }
@@ -70,5 +85,11 @@ img#pfp {
   #blurbs {
     grid-row: 4/7;
     grid-column: 2;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  #profileBox .flexContainer {
+    flex-direction: row;
   }
 }
