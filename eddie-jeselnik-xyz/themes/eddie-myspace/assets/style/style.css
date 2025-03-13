@@ -32,6 +32,13 @@ body {
   font-style: normal;
 }
 
+main {
+  margin-left: 2.5vw;
+  margin-right: 2.5vw;
+  color: var(--textColor);
+  font-weight: 500;
+}
+
 header #header {
   display: flex;
   background-color: var(--myspaceBlue);
@@ -70,12 +77,6 @@ header #header a {
   color: inherit;
   background: none;
   margin-left: 2.5vw;
-}
-
-main {
-  margin-left: 2.5vw;
-  margin-right: 2.5vw;
-  color: var(--textColor);
 }
 
 a {
