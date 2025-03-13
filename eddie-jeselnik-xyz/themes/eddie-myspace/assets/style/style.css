@@ -3,7 +3,7 @@
   --navColor: #6698CB;
   --bodyBg: black;
   --profileElemBg: #222222;
-  --textColor: grey;
+  --textColor: #8f8f8f;
   box-sizing: border-box;
   line-height: 1.3;
   -moz-text-size-adjust: none;
@@ -75,6 +75,7 @@ header #header a {
 main {
   margin-left: 2.5vw;
   margin-right: 2.5vw;
+  color: var(--textColor);
 }
 
 a {
@@ -99,7 +100,6 @@ th {
 
 .profileElement {
   background-color: var(--profileElemBg);
-  color: var(--textColor);
   border-style: solid;
   padding: 10px 10px 10px 10px;
 }
