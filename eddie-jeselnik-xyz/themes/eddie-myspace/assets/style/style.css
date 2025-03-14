@@ -32,10 +32,11 @@ img {
 
 table {
   background-color: var(--profileElemBg);
+  border-collapse: collapse;
 }
 
 th, td {
-  border: solid;
+  border: 3px solid;
 }
 
 th {
