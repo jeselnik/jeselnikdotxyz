@@ -3,7 +3,8 @@
     <p id="displayName">Eddie</p>
     <div class="flexContainer">
       <div id="profileLeft">
-        <img id="pfp" src="pfp.webp" alt="Me!">
+        {{ $profilePic := resources.Get "pfp.webp" | fingerprint }}
+        <img id="pfp" src="{{ $profilePic.RelPermalink }}" alt="Me!">
         <p id="visitorCount"></p>
       </div>
       <div id="profileRight">
