@@ -1,10 +1,10 @@
 <div id="header">
   <a id="rootLink" href="/"></a>
 </div>
-<div id="nav">
+<nav>
   | <a href="/">Home</a>
   {{ range sort (where .Site.Sections "Section" "!=" "") "Title" }}
   | <a href="{{ .RelPermalink }}">{{ .Title }}</a>
   {{ end }}
   |
-</div>
+</nav>
