@@ -13,6 +13,9 @@
   {{- end }}
   <link href="{{ $indexStyle.RelPermalink }}" rel="stylesheet">
   <meta name="description" content="Eddie Jeselnik's corner of the internet.">
+  {{- with .OutputFormats.Get "rss" }}
+    {{ printf `<link rel=%q type=%q href=%q title=%q>` .Rel .MediaType.Type .Permalink site.Title | safeHTML }}
+  {{- end }}
 </head>
 <body>
   <header>
