@@ -31,6 +31,8 @@ const songs: Array<string> = [
   '0yp3TvJNlG50Q4tAHWNCRm',
   /* soulja boy - crank that */
   '66TRwr5uJwPt15mfFkzhbi',
+  /* soulja boy - kiss me thru the phone */
+  '2q4rjDy9WhaN3o9MvDbO21',
 ];
 
 /* 
