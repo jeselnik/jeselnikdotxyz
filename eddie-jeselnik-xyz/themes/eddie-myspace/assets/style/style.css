@@ -24,6 +24,7 @@ a {
 
 a:hover {
   color: lightsteelblue;
+  text-decoration: underline;
 }
 
 img {
@@ -84,12 +85,10 @@ header nav * {
 }
 
 header nav a {
-  text-decoration: none;
   color: white;
 }
 
 header nav a:hover {
-  text-decoration: underline;
   color: darkblue;
 }
 
