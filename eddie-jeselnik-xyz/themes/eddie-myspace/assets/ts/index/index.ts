@@ -28,7 +28,9 @@ const songs: Array<string> = [
   /* magdalena bay - you lose! */
   '0tP8FKhJsar5y4JcOH4Rjp',
   /* depeche mode - enjoy the silence */
-  '0yp3TvJNlG50Q4tAHWNCRm'
+  '0yp3TvJNlG50Q4tAHWNCRm',
+  /* soulja boy - crank that */
+  '66TRwr5uJwPt15mfFkzhbi',
 ];
 
 /* 
