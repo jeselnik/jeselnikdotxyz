@@ -19,6 +19,7 @@
 
 a {
   color: steelblue;
+  text-decoration: none;
 }
 
 a:hover {
@@ -63,7 +64,6 @@ header #header {
 }
 
 header #header a {
-  text-decoration: none;
   color: inherit;
   background: none;
   margin-left: 1.25vw;

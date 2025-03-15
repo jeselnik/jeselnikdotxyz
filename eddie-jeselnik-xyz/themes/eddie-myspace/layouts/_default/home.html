@@ -3,7 +3,7 @@
     <p id="displayName">Eddie</p>
     <div class="flexContainer">
       <div id="profileLeft">
-        {{ $profilePic := resources.Get "pfp.webp" | fingerprint }}
+        {{ $profilePic := resources.Get "assets/pfp.webp" | fingerprint }}
         <img id="pfp" src="{{ $profilePic.RelPermalink }}" alt="Me!">
         <p id="visitorCount"></p>
       </div>
@@ -24,8 +24,9 @@
     allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy">
   </iframe>
 
+  {{ $rssIcon := resources.Get "assets/rss.svg" | fingerprint | minify }}
   <div id="blogEntries" class="profileElement textElement">
-    Eddie's Latest Blog Entries: [<a href="/index.xml">Subscribe to this Blog</a>]
+    Eddie's Latest Blog Entries: [<a href="/index.xml">Subscribe to this Blog <img id="rssIcon" src="{{ $rssIcon.RelPermalink }}"/></a>]
     <br>
     <ul>
     {{ range where .Site.RegularPages "Section" "in" (slice "blog" "photos") }}
