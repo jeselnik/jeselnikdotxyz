@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html lang="{{ site.Language.LanguageCode }}" dir="{{ or site.Language.LanguageDirection `ltr` }}">
 <head>
-  {{ partial "head.html" . }}
-  {{ $indexJs := resources.Get "ts/index/index.ts" | js.Build "js/index.js" | fingerprint }}
-  {{ if hugo.IsProduction }}
-    {{ $indexJs = $indexJs | minify }}
-  {{ end }}
+  {{- partial "head.html" . }}
+  {{- $indexJs := resources.Get "ts/index/index.ts" | js.Build "js/index.js" | fingerprint }}
+  {{- if hugo.IsProduction }}
+    {{- $indexJs = $indexJs | minify }}
+  {{- end }}
   <script src="{{ $indexJs.RelPermalink }}" defer></script>
-  {{ $indexStyle := resources.Get "style/index.css" | fingerprint }}
-  {{ if hugo.IsProduction }}
-    {{ $indexStyle = $indexStyle | resources.Minify }}
-  {{ end }}
+  {{- $indexStyle := resources.Get "style/index.css" | fingerprint }}
+  {{- if hugo.IsProduction }}
+    {{- $indexStyle = $indexStyle | resources.Minify }}
+  {{- end }}
   <link href="{{ $indexStyle.RelPermalink }}" rel="stylesheet">
   <meta name="description" content="Eddie Jeselnik's corner of the internet.">
 </head>
 <body>
   <header>
-    {{ partial "header.html" . }}
+    {{- partial "header.html" . }}
   </header>
   <main class="gridContainer" id="profileIndex">
-    {{ block "main" . }}{{ end }}
+    {{- block "main" . }}{{- end }}
   </main>
 </body>
 </html>
