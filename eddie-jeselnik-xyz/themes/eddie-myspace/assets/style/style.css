@@ -70,6 +70,10 @@ header #header a {
   margin-left: 1.25vw;
 }
 
+header #header a:hover {
+  text-decoration: none;
+}
+
 header nav {
   background-color: var(--navColor);
   height: 2em;
