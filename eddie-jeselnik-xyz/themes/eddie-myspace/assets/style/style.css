@@ -48,7 +48,7 @@ th {
 body {
   margin: 0;
   padding: 0;
-  background-image: url("./stars.gif");
+  background-image: url("/assets/stars.gif");
   font-family: Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
