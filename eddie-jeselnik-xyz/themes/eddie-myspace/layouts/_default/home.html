@@ -25,10 +25,10 @@
   </iframe>
 
   <div id="blogEntries" class="profileElement textElement">
-    Eddie's Latest Blog Entries: [<a href="/blog/index.xml">Subscribe to this Blog</a>]
+    Eddie's Latest Blog Entries: [<a href="/index.xml">Subscribe to this Blog</a>]
     <br>
     <ul>
-    {{ range where .Site.RegularPages "Type" "posts" }}
+    {{ range where .Site.RegularPages "Section" "in" (slice "blog" "photos") }}
       <li><a href="{{ .RelPermalink }}">{{ .Date.Format "2006-01-02" }} - {{ .Title }}</a></li>
     {{ end }}
     </ul>
