@@ -2,6 +2,11 @@ baseURL = 'https://eddie.jeselnik.xyz/'
 languageCode = 'en-au'
 title = "Eddie's (My)Space"
 theme = 'eddie-myspace'
+[outputs]
+  home = ['html', 'rss']
+  section = ['html']
+  taxonomy = ['html']
+  term = ['html']
 [services]
   [services.rss]
     limit = 50
