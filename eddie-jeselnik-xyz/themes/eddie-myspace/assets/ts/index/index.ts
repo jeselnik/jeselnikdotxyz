@@ -1,5 +1,8 @@
 /*! Check github for the un-minified code :p */
 
+const onlineBadge = document.getElementById("onlineBadge") as HTMLImageElement;
+const spotifyEmbed = document.getElementById("musicBox") as HTMLIFrameElement;
+
 /* tbd: add medicare #, mygov security question answers */
 const birthday: Date = new Date("July 28, 2000 10:00:00");
 
@@ -87,18 +90,15 @@ function main(): void {
     env = "test";
   }
 
-  const onlineBadge = document.getElementById("onlineBadge") as HTMLImageElement;
-  const spotifyEmbed = document.getElementById("musicBox") as HTMLIFrameElement;
-
   document.getElementById("agePar")!.innerHTML = whatsMyAgeAgain(birthday) + " years old";
   spotifyEmbed.src = randomSpotifyTrack(songs);
   spotifyEmbed.src += '';
 
-  onlineBadge.addEventListener("mouseover", function(){
+  onlineBadge.addEventListener("mouseover", () => {
     onlineBadge.src="/assets/badges/70.gif";
   })
 
-  onlineBadge.addEventListener("mouseout", function(){
+  onlineBadge.addEventListener("mouseout", () => {
     onlineBadge.src="/assets/badges/online.gif";
   })
 
