@@ -28,6 +28,17 @@
   font-size: large;
 }
 
+#blogEntries ul {
+  font-weight: 400;
+  list-style-type: none;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+#blogEntries ul a {
+  font-weight: 500;
+}
+
 #musicBox {
   background-color: transparent;
   border-color: transparent;
