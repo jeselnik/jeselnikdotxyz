@@ -29,7 +29,12 @@ a:hover {
 
 img {
   height: auto;
+  max-height: 50vh;
   max-width: 100%;
+}
+
+figcaption {
+  text-align: center;
 }
 
 table {
