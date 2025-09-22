@@ -32,12 +32,24 @@ function whatsMyAgeAgain(bDay: Date): number {
 }
 
 async function visitorCounter(): Promise<number> {
-  const response = await fetch("https://dg3oo7ffiqitokznjzarauyq440cwnyc.lambda-url.ap-southeast-2.on.aws");
+  const visited = localStorage.getItem("visited");
+  let incr = true;
+  if (visited == "true") {
+    incr = false;
+  }
+
+  const response = await fetch("https://dg3oo7ffiqitokznjzarauyq440cwnyc.lambda-url.ap-southeast-2.on.aws",
+    {
+      method: "POST",
+      body: JSON.stringify({increment: incr}),
+    }
+  );
   if (!response.ok) {
     throw new Error("Failed to fetch visitor count!");
   }
 
   const data = await response.json();
+  localStorage.setItem("visited", "true");
   return data.totalVisitors;
 }
 

@@ -5,8 +5,6 @@ const songs: Array<string> = [
   '0me5bs5Ww1boCUR4tdcbXd',
   /* blink 182 - what's my age again */
   '4LJhJ6DQS7NwE7UKtvcM52',
-  /* isheika - kogda my umiraem */
-  '58noIDh7ilKCIOThwyTqKH',
   /* blink 182 - adam's song */
   '6xpDh0dXrkVp0Po1qrHUd8',
   /* paramore - when it rains */
@@ -18,8 +16,6 @@ const songs: Array<string> = [
   '00Mb3DuaIH1kjrwOku9CGU',
   /* mcr - famous last words */
   '2d6m2F4I7wCuAKtSsdhh83',
-  /* molchat doma - son */
-  '6bn5OFUhl8lm4VzKEPSzEz',
   /* all american rejects - it ends tonight */
   '5ZqNz8GXWpkb95f7aVxTA0',
   /* magdalena bay - you lose! */

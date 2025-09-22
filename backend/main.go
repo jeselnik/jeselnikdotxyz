@@ -32,6 +32,10 @@ type VisitorCountResponse struct {
 	TotalVisitors int    `json:"totalVisitors"`
 }
 
+type VisitorCountReqBody struct {
+	Increment bool `json:"increment"`
+}
+
 func init() {
 	cfg, err := config.LoadDefaultConfig(context.TODO())
 	if err != nil {
@@ -40,7 +44,38 @@ func init() {
 	dbClient = dynamodb.NewFromConfig(cfg)
 }
 
-func updateVisitorCount() (int, error) {
+func getVisitorCount() (int, error) {
+	input := &dynamodb.GetItemInput{
+		TableName: aws.String(cTABLE_NAME),
+		Key: map[string]types.AttributeValue{
+			cPARTITION_KEY: &types.AttributeValueMemberS{Value: cCOUNTER_NAME},
+		},
+		ProjectionExpression: aws.String("totalVisitors"),
+	}
+
+	result, err := dbClient.GetItem(context.TODO(), input)
+	if err != nil {
+		return -1, err
+	}
+
+	if result.Item == nil {
+		return 0, nil
+	}
+
+	val, ok := result.Item["totalVisitors"].(*types.AttributeValueMemberN)
+	if !ok {
+		return -1, errAttrFetch
+	}
+
+	count, err := strconv.Atoi(val.Value)
+	if err != nil {
+		return -1, err
+	}
+
+	return count, nil
+}
+
+func updateVisitorCount() error {
 	updateInput := &dynamodb.UpdateItemInput{
 		TableName: aws.String(cTABLE_NAME),
 		Key: map[string]types.AttributeValue{
@@ -54,26 +89,17 @@ func updateVisitorCount() (int, error) {
 		ReturnValues: types.ReturnValueUpdatedNew,
 	}
 
-	result, err := dbClient.UpdateItem(context.TODO(), updateInput)
-	if err != nil {
-		return -1, err
-	}
-
-	val, success := result.Attributes["totalVisitors"].(*types.AttributeValueMemberN)
-	if !success {
-		return -1, errAttrFetch
-	}
-
-	count, err := strconv.Atoi(val.Value)
-	if err != nil {
-		return -1, err
-	}
-
-	return count, nil
+	_, err := dbClient.UpdateItem(context.TODO(), updateInput)
+	return err
 }
 
-func visitorCount() (events.LambdaFunctionURLResponse, error) {
-	count, err := updateVisitorCount()
+func visitorCount(incr bool) (events.LambdaFunctionURLResponse, error) {
+	var count int = 0
+	var err error = nil
+	if incr {
+		updateVisitorCount()
+	}
+	count, err = getVisitorCount()
 	if err != nil {
 		return genericServerError, err
 	}
@@ -100,8 +126,13 @@ func visitorCount() (events.LambdaFunctionURLResponse, error) {
 }
 
 func handler(ctx context.Context, req events.LambdaFunctionURLRequest) (events.LambdaFunctionURLResponse, error) {
+	var reqBody VisitorCountReqBody
+	reqBodyErr := json.Unmarshal([]byte(req.Body), &reqBody)
+	if reqBodyErr != nil {
+		return genericServerError, reqBodyErr
+	}
 	/* Only one route (for now?) */
-	return visitorCount()
+	return visitorCount(reqBody.Increment)
 }
 
 func main() {
