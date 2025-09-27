@@ -4,7 +4,9 @@ date: 2025-03-23
 draft: false
 ---
 
-This is super unfinished while I dig up pictures from my photo gallery.
+This is super unfinished, I'm still digging up pictures from my photo gallery!
+
+## 2025-05-03: Slowdive - Festival Hall (Melbourne, 🇦🇺)
 
 ## 2025-03-07: Magdalena Bay - Palace Foreshore (Melbourne, 🇦🇺)
 
