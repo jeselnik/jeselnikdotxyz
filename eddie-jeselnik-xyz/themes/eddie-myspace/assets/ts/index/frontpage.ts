@@ -44,7 +44,7 @@ async function visitorCounter(): Promise<number> {
       body: JSON.stringify({increment: incr}),
     }
   );
-  if (!response.ok) {
+  if (!response.ok || response.status != 200) {
     throw new Error("Failed to fetch visitor count!");
   }
 
