@@ -96,8 +96,13 @@ func updateVisitorCount() error {
 func visitorCount(incr bool) (events.LambdaFunctionURLResponse, error) {
 	var count int = 0
 	var err error = nil
+	message := "retrieved"
 	if incr {
-		updateVisitorCount()
+		err = updateVisitorCount()
+		if err != nil {
+			return genericServerError, err
+		}
+		message = "incremented"
 	}
 	count, err = getVisitorCount()
 	if err != nil {
@@ -105,7 +110,7 @@ func visitorCount(incr bool) (events.LambdaFunctionURLResponse, error) {
 	}
 
 	resBody := VisitorCountResponse{
-		Message:       "incremented",
+		Message:       message,
 		TotalVisitors: count,
 	}
 
