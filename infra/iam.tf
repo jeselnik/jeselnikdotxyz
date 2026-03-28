@@ -1,5 +1,5 @@
 resource "aws_iam_role" "jeselnik_xyz_lambda_backend" {
-  name = "jeselnik-xyz-lambda-role"
+  name = "jeselnik_xyz_lambda_backend"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
