@@ -31,12 +31,40 @@ resource "aws_lambda_function" "jeselnik_xyz_backend" {
   timeout   = 10
 }
 
-resource "aws_lambda_function_url" "visit" {
-  function_name      = aws_lambda_function.jeselnik_xyz_backend.function_name
-  authorization_type = "NONE"
+resource "aws_apigatewayv2_api" "jeselnik_xyz_api" {
+  name          = "jeselnik-xyz-api"
+  protocol_type = "HTTP"
 
-  cors {
-    allow_methods = ["GET", "POST"]
+  cors_configuration {
+    allow_methods = ["GET", "POST", "OPTIONS"]
     allow_origins = ["https://eddie.${local.domain}"]
+    allow_headers = ["*"]
   }
+}
+
+resource "aws_apigatewayv2_integration" "jeselnik_xyz_lambda" {
+  api_id                 = aws_apigatewayv2_api.jeselnik_xyz_api.id
+  integration_type       = "AWS_PROXY"
+  integration_uri        = aws_lambda_function.jeselnik_xyz_backend.invoke_arn
+  payload_format_version = "2.0"
+}
+
+resource "aws_apigatewayv2_route" "jeselnik_xyz_default" {
+  api_id    = aws_apigatewayv2_api.jeselnik_xyz_api.id
+  route_key = "$default"
+  target    = "integrations/${aws_apigatewayv2_integration.jeselnik_xyz_lambda.id}"
+}
+
+resource "aws_apigatewayv2_stage" "default" {
+  api_id      = aws_apigatewayv2_api.jeselnik_xyz_api.id
+  name        = "$default"
+  auto_deploy = true
+}
+
+resource "aws_lambda_permission" "api_gateway" {
+  statement_id  = "AllowAPIGatewayInvoke"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.jeselnik_xyz_backend.function_name
+  principal     = "apigateway.amazonaws.com"
+  source_arn    = "${aws_apigatewayv2_api.jeselnik_xyz_api.execution_arn}/*/*"
 }

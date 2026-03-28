@@ -24,7 +24,7 @@ const (
 var (
 	dbClient           *dynamodb.Client
 	errAttrFetch       = errors.New("unable to retrieve totalVisitors attribute")
-	genericServerError = events.LambdaFunctionURLResponse{StatusCode: 500}
+	genericServerError = events.APIGatewayV2HTTPResponse{StatusCode: 500}
 )
 
 type VisitorCountResponse struct {
@@ -93,7 +93,7 @@ func updateVisitorCount() error {
 	return err
 }
 
-func visitorCount(incr bool) (events.LambdaFunctionURLResponse, error) {
+func visitorCount(incr bool) (events.APIGatewayV2HTTPResponse, error) {
 	var count int = 0
 	var err error = nil
 	message := "retrieved"
@@ -119,7 +119,7 @@ func visitorCount(incr bool) (events.LambdaFunctionURLResponse, error) {
 		return genericServerError, err
 	}
 
-	resp := events.LambdaFunctionURLResponse{
+	resp := events.APIGatewayV2HTTPResponse{
 		StatusCode: 200,
 		Headers: map[string]string{
 			"Content-Type": "application/json",
@@ -130,7 +130,7 @@ func visitorCount(incr bool) (events.LambdaFunctionURLResponse, error) {
 	return resp, nil
 }
 
-func handler(ctx context.Context, req events.LambdaFunctionURLRequest) (events.LambdaFunctionURLResponse, error) {
+func handler(ctx context.Context, req events.APIGatewayV2HTTPRequest) (events.APIGatewayV2HTTPResponse, error) {
 	var reqBody VisitorCountReqBody
 	reqBodyErr := json.Unmarshal([]byte(req.Body), &reqBody)
 	if reqBodyErr != nil {
