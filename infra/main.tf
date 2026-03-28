@@ -2,7 +2,7 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "5.86.0"
+      version = "~> 6.0"
     }
 
     cloudflare = {
@@ -19,8 +19,8 @@ terraform {
   backend "s3" {
     bucket         = "jeselnik-tf-state"
     key            = "state/terraform.tfstate"
+    use_lockfile   = true
     region         = "ap-southeast-2"
-    dynamodb_table = "jeselnik-tf-lock"
   }
 
 }
