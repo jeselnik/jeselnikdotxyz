@@ -15,7 +15,7 @@ resource "aws_iam_role_policy" "lambda_dynamodb" {
           "dynamodb:Query",
           "dynamodb:Scan"
         ]
-        Resource = "arn:aws:dynamodb:ap-southeast-2:862357640489:table/jeselnikxyz-visitor-counter"
+        Resource = aws_dynamodb_table.jeselnikxyz-visitor-counter.arn
       }
     ]
   })
