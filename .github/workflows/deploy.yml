@@ -23,8 +23,8 @@ jobs:
       run:
         working-directory: ./infra
     steps:
-      - uses: actions/checkout@v4
-      - uses: opentofu/setup-opentofu@v1
+      - uses: actions/checkout@v6
+      - uses: opentofu/setup-opentofu@v2
       - name: Tofu Init
         run: tofu init
       - name: Tofu Apply
@@ -37,7 +37,7 @@ jobs:
     needs: terraform
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: peaceiris/actions-hugo@v3
       - name: Compile
         run: hugo --minify
@@ -58,7 +58,7 @@ jobs:
       run:
         working-directory: ./backend
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: actions/setup-go@v5
         with:
           cache-dependency-path: "backend/go.sum"
