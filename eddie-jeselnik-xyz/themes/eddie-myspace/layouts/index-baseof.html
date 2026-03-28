@@ -2,7 +2,8 @@
 <html lang="{{ site.Language.LanguageCode }}" dir="{{ or site.Language.LanguageDirection `ltr` }}">
 <head>
   {{- partial "head.html" . }}
-  {{- $indexJs := resources.Get "ts/index/index.ts" | js.Build "js/index.js" | fingerprint }}
+  {{- $jsParams := dict "apiEndpoint" .Site.Params.apiEndpoint }}
+  {{- $indexJs := resources.Get "ts/index/index.ts" | js.Build (dict "targetPath" "js/index.js" "params" $jsParams) | fingerprint }}
   {{- if hugo.IsProduction }}
     {{- $indexJs = $indexJs | minify }}
   {{- end }}

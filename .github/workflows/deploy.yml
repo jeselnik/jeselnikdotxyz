@@ -17,6 +17,8 @@ jobs:
   terraform:
     name: Deploy Infrastructure
     runs-on: ubuntu-latest
+    outputs:
+      api_endpoint: ${{ steps.tofu_output.outputs.api_endpoint }}
     defaults:
       run:
         working-directory: ./infra
@@ -27,6 +29,9 @@ jobs:
         run: tofu init
       - name: Tofu Apply
         run: tofu apply -auto-approve -no-color
+      - name: Get API Endpoint
+        id: tofu_output
+        run: echo "api_endpoint=$(tofu output -raw api_gateway_endpoint)" >> $GITHUB_OUTPUT
   sync:
     name: Sync Frontend
     needs: terraform
@@ -37,6 +42,8 @@ jobs:
       - name: Compile
         run: hugo --minify
         working-directory: ./eddie-jeselnik-xyz
+        env:
+          HUGO_PARAMS_APIENDPOINT: ${{ needs.terraform.outputs.api_endpoint }}
       - name: Sync
         uses: cloudflare/wrangler-action@v3
         with:

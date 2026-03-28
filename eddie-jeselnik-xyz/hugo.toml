@@ -9,6 +9,9 @@ theme = 'eddie-myspace'
   section = ['html']
   taxonomy = ['html']
   term = ['html']
+[params]
+  apiEndpoint = ""
+
 [services]
   [services.rss]
     limit = 50

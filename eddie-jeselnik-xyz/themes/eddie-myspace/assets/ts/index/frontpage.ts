@@ -1,4 +1,6 @@
 /*! Check github for the un-minified code :p */
+import params from "@params";
+
 const onlineBadge = document.getElementById("onlineBadge") as HTMLImageElement;
 
 /* tbd: add medicare #, mygov security question answers */
@@ -38,7 +40,7 @@ async function visitorCounter(): Promise<number> {
     incr = false;
   }
 
-  const response = await fetch("https://dg3oo7ffiqitokznjzarauyq440cwnyc.lambda-url.ap-southeast-2.on.aws",
+  const response = await fetch(params.apiEndpoint,
     {
       method: "POST",
       body: JSON.stringify({increment: incr}),
