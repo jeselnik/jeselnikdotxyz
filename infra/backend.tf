@@ -20,7 +20,7 @@ resource "aws_s3_bucket" "jeselnik_xyz_lambda" {
 
 resource "aws_lambda_function" "jeselnik_xyz_backend" {
   function_name = "jeselnik-xyz-backend"
-  role          = "arn:aws:iam::862357640489:role/jeselnik-xyz-lambda-role"
+  role          = aws_iam_role.jeselnik_xyz_lambda_backend.arn
   package_type  = "Zip"
   handler       = "bootstrap"
   runtime       = "provided.al2023"
