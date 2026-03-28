@@ -3,7 +3,7 @@ module jeselnik-backend
 go 1.24
 
 require (
-	github.com/aws/aws-lambda-go v1.53.0
+	github.com/aws/aws-lambda-go v1.54.0
 	github.com/aws/aws-sdk-go-v2 v1.41.5
 	github.com/aws/aws-sdk-go-v2/config v1.32.12
 	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.57.1
