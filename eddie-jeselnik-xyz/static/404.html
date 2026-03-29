@@ -18,95 +18,10 @@
             font-family: 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
         }
 
-        /* ================================================================
-           Mac OS X Tiger wallpaper — pure CSS recreation
-           Base: deep blue radial gradient. Ribbons: large blurred ellipses
-           rotated ~-20° to simulate the diagonal sweeping bands.
-        ================================================================ */
-
         .tiger {
             position: fixed;
             inset: 0;
-            background: radial-gradient(
-                ellipse 140% 120% at 38% 44%,
-                #5494da 0%,
-                #3570c4 22%,
-                #1e4fa0 55%,
-                #122f7a 100%
-            );
-            overflow: hidden;
-        }
-
-        /* Soft left-centre highlight glow */
-        .tiger::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(
-                ellipse 65% 52% at 20% 54%,
-                rgba(115, 190, 255, 0.36) 0%,
-                transparent 70%
-            );
-        }
-
-        /* Corner darkening — top-right and bottom-left */
-        .tiger::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background:
-                radial-gradient(ellipse 58% 58% at 102%   -2%, rgba(6, 20, 68, 0.58) 0%, transparent 62%),
-                radial-gradient(ellipse 58% 58% at  -2%  102%, rgba(6, 20, 68, 0.48) 0%, transparent 62%);
-        }
-
-        .wave {
-            position: absolute;
-            border-radius: 50%;
-        }
-
-        /* Primary broad diagonal sweep (the dominant ribbon in Tiger) */
-        .w1 {
-            width: 255%; height: 98%;
-            top: -40%; left: -95%;
-            background: rgba(100, 172, 248, 0.22);
-            transform: rotate(-20deg) translateZ(0);
-            filter: blur(30px);
-        }
-
-        /* Bright core of the primary ribbon */
-        .w2 {
-            width: 200%; height: 52%;
-            top: -6%; left: -52%;
-            background: rgba(145, 215, 255, 0.20);
-            transform: rotate(-21deg) translateZ(0);
-            filter: blur(20px);
-        }
-
-        /* Narrow bright highlight — the lightest streak */
-        .w3 {
-            width: 148%; height: 26%;
-            top: 4%; left: -22%;
-            background: rgba(180, 230, 255, 0.18);
-            transform: rotate(-22deg) translateZ(0);
-            filter: blur(13px);
-        }
-
-        /* Secondary lower sweep */
-        .w4 {
-            width: 240%; height: 68%;
-            top: 50%; left: -85%;
-            background: rgba(88, 158, 232, 0.20);
-            transform: rotate(-18deg) translateZ(0);
-            filter: blur(36px);
-        }
-
-        /* Lower-right trailing band */
-        .w5 {
-            width: 145%; height: 38%;
-            top: 66%; left: 18%;
-            background: rgba(110, 182, 248, 0.15);
-            transform: rotate(-24deg) translateZ(0);
-            filter: blur(22px);
+            background: url('./tiger.6b60492143629f9deb063c30abe167c09b007687b2f8d4988d4716ff6ea8577c.webp') center center / cover no-repeat;
         }
 
         /* ================================================================
@@ -160,13 +75,7 @@
 <body>
 
     <!-- Tiger wallpaper -->
-    <div class="tiger">
-        <div class="wave w1"></div>
-        <div class="wave w2"></div>
-        <div class="wave w3"></div>
-        <div class="wave w4"></div>
-        <div class="wave w5"></div>
-    </div>
+    <div class="tiger"></div>
 
     <!-- Kernel panic overlay -->
     <div class="kp">
