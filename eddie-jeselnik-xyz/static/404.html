@@ -3,11 +3,206 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 Not Found</title>
+    <title>404 — Kernel Panic</title>
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            font-family: 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
+        /* ================================================================
+           Mac OS X Tiger wallpaper — pure CSS recreation
+           Base: deep blue radial gradient. Ribbons: large blurred ellipses
+           rotated ~-20° to simulate the diagonal sweeping bands.
+        ================================================================ */
+
+        .tiger {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(
+                ellipse 140% 120% at 38% 44%,
+                #5494da 0%,
+                #3570c4 22%,
+                #1e4fa0 55%,
+                #122f7a 100%
+            );
+            overflow: hidden;
+        }
+
+        /* Soft left-centre highlight glow */
+        .tiger::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(
+                ellipse 65% 52% at 20% 54%,
+                rgba(115, 190, 255, 0.36) 0%,
+                transparent 70%
+            );
+        }
+
+        /* Corner darkening — top-right and bottom-left */
+        .tiger::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 58% 58% at 102%   -2%, rgba(6, 20, 68, 0.58) 0%, transparent 62%),
+                radial-gradient(ellipse 58% 58% at  -2%  102%, rgba(6, 20, 68, 0.48) 0%, transparent 62%);
+        }
+
+        .wave {
+            position: absolute;
+            border-radius: 50%;
+        }
+
+        /* Primary broad diagonal sweep (the dominant ribbon in Tiger) */
+        .w1 {
+            width: 255%; height: 98%;
+            top: -40%; left: -95%;
+            background: rgba(100, 172, 248, 0.22);
+            transform: rotate(-20deg) translateZ(0);
+            filter: blur(30px);
+        }
+
+        /* Bright core of the primary ribbon */
+        .w2 {
+            width: 200%; height: 52%;
+            top: -6%; left: -52%;
+            background: rgba(145, 215, 255, 0.20);
+            transform: rotate(-21deg) translateZ(0);
+            filter: blur(20px);
+        }
+
+        /* Narrow bright highlight — the lightest streak */
+        .w3 {
+            width: 148%; height: 26%;
+            top: 4%; left: -22%;
+            background: rgba(180, 230, 255, 0.18);
+            transform: rotate(-22deg) translateZ(0);
+            filter: blur(13px);
+        }
+
+        /* Secondary lower sweep */
+        .w4 {
+            width: 240%; height: 68%;
+            top: 50%; left: -85%;
+            background: rgba(88, 158, 232, 0.20);
+            transform: rotate(-18deg) translateZ(0);
+            filter: blur(36px);
+        }
+
+        /* Lower-right trailing band */
+        .w5 {
+            width: 145%; height: 38%;
+            top: 66%; left: 18%;
+            background: rgba(110, 182, 248, 0.15);
+            transform: rotate(-24deg) translateZ(0);
+            filter: blur(22px);
+        }
+
+        /* ================================================================
+           Kernel panic panel
+        ================================================================ */
+
+        .kp {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .kp-panel {
+            position: relative;
+            width: min(700px, 100%);
+            background: rgba(16, 16, 16, 0.88);
+            border-radius: 0;
+            padding: 52px 58px;
+            overflow: hidden;
+        }
+
+        /* Power-button watermark — centred behind the text */
+        .kp-power {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 270px;
+            height: 270px;
+            opacity: 0.17;
+            pointer-events: none;
+        }
+
+        .kp-text {
+            position: relative;
+            z-index: 1;
+            color: #ededed;
+            font-size: 17px;
+            line-height: 1.65;
+            letter-spacing: 0.014em;
+        }
+
+        .kp-text p + p {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    <main>
-      <h1>404 Not Found</h1>
-    </main>
+
+    <!-- Tiger wallpaper -->
+    <div class="tiger">
+        <div class="wave w1"></div>
+        <div class="wave w2"></div>
+        <div class="wave w3"></div>
+        <div class="wave w4"></div>
+        <div class="wave w5"></div>
+    </div>
+
+    <!-- Kernel panic overlay -->
+    <div class="kp">
+        <div class="kp-panel">
+
+            <!--
+                Power-button SVG.
+                Circle: cx=50 cy=62 r=27, circumference≈169.6
+                Gap centred at 12 o'clock (¾ around from 3 o'clock = 127.2 along path).
+                Gap size 32 → dasharray: 111 32 27
+                Stem: (50,13)→(50,48), bridging the gap.
+            -->
+            <svg class="kp-power"
+                 viewBox="0 0 100 100"
+                 fill="none"
+                 xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="62" r="27"
+                    stroke="white"
+                    stroke-width="9"
+                    stroke-linecap="round"
+                    stroke-dasharray="111 32 27"/>
+                <line x1="50" y1="13" x2="50" y2="48"
+                    stroke="white"
+                    stroke-width="9"
+                    stroke-linecap="round"/>
+            </svg>
+
+            <div class="kp-text">
+                <p>The page you requested could not be found. Return to the previous page or navigate home. <strong>(Error 404)</strong></p>
+                <p>Veuillez redémarrer votre ordinateur. Maintenez la touche de démarrage enfoncée pendant plusieurs secondes ou bien appuyez sur le bouton de réinitialisation.</p>
+                <p>Sie müssen Ihren Computer neu starten. Halten Sie dazu die Einschalttaste einige Sekunden gedrückt oder drücken Sie die Neustart-Taste.</p>
+                <p>コンピュータを再起動する必要があります。パワーボタンを数秒間押し続けるか、リセットボタンを押してください。</p>
+            </div>
+
+        </div>
+    </div>
+
 </body>
 </html>
