@@ -40,7 +40,7 @@
         .kp-panel {
             position: relative;
             width: min(700px, 100%);
-            background: rgba(16, 16, 16, 0.88);
+            background: #101010;
             border-radius: 0;
             padding: 52px 58px;
             overflow: hidden;
@@ -54,7 +54,6 @@
             transform: translate(-50%, -50%);
             width: 270px;
             height: 270px;
-            opacity: 0.17;
             pointer-events: none;
         }
 
@@ -92,14 +91,23 @@
                  viewBox="0 0 100 100"
                  fill="none"
                  xmlns="http://www.w3.org/2000/svg">
-                <circle cx="50" cy="62" r="27"
-                    stroke="white"
-                    stroke-width="9"
+                <!-- Dark grey circle backdrop -->
+                <circle cx="50" cy="50" r="44" fill="#3a3a3a"/>
+                <!--
+                    Arc: cx=50 cy=57 r=25, circumference≈157.1
+                    Gap centred at 12 o'clock (¾ around = 117.8).
+                    Gap size 26 → dasharray: 105 26 26
+                    Stem: y=21→y=42 (short, sits just inside the gap).
+                    Bounding box y=21..y=82, centre≈y=51 — visually centred in disc.
+                -->
+                <circle cx="50" cy="54" r="25"
+                    stroke="#101010"
+                    stroke-width="8"
                     stroke-linecap="round"
-                    stroke-dasharray="111 32 27"/>
-                <line x1="50" y1="13" x2="50" y2="48"
-                    stroke="white"
-                    stroke-width="9"
+                    stroke-dasharray="105 26 26"/>
+                <line x1="50" y1="18" x2="50" y2="39"
+                    stroke="#101010"
+                    stroke-width="8"
                     stroke-linecap="round"/>
             </svg>
 
