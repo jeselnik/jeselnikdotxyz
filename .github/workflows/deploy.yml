@@ -45,7 +45,7 @@ jobs:
         env:
           HUGO_PARAMS_APIENDPOINT: ${{ needs.terraform.outputs.api_endpoint }}
       - name: Sync
-        uses: cloudflare/wrangler-action@v3
+        uses: cloudflare/wrangler-action@v4
         with:
           apiToken: ${{ secrets.ACTIONS_CLOUDFLARE }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
